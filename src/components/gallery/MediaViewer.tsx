@@ -57,7 +57,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white">
         <div className="relative w-full h-full flex flex-col">
-          {/* Close button */}
+          {/* Close button - only showing one close button now */}
           <button 
             onClick={onClose}
             className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"

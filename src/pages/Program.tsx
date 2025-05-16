@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import Timeline from '@/components/program/Timeline';
 
@@ -50,9 +50,15 @@ const programItems = [
 ];
 
 const Program = () => {
+  const [showAnimation, setShowAnimation] = useState<boolean>(false);
+  
+  useEffect(() => {
+    setShowAnimation(true);
+  }, []);
+
   return (
     <AppLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className={`container mx-auto px-4 py-8 opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`}>
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-2 gradient-text">Program rozlučky</h1>
           <p className="text-gray-600 mb-8">

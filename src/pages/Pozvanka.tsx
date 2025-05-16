@@ -101,6 +101,7 @@ const Pozvanka = () => {
             onClick={handleDownloadPDF} 
             variant="secondary"
             disabled={isGeneratingPdf}
+            className="whitespace-nowrap flex-nowrap"
           >
             {isGeneratingPdf ? (
               <>
@@ -112,10 +113,10 @@ const Pozvanka = () => {
               </>
             ) : (
               <>
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
-                Stáhnout pozvánku jako PDF
+                <span>Stáhnout PDF</span>
               </>
             )}
           </GradientButton>

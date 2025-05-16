@@ -21,7 +21,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   className = '',
   disabled = false
 }) => {
-  const baseStyles = "inline-block rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30";
+  const baseStyles = "inline-flex items-center justify-center rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30";
   
   const variantStyles = {
     primary: "bg-gradient-to-r from-pink via-peach to-mandarin text-white",
