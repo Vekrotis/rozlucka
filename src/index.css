@@ -60,7 +60,7 @@
 
 @layer components {
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-pink via-peach to-mandarin;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple via-pink to-peach font-bold;
   }
   
   .gradient-bg {
@@ -77,11 +77,19 @@
     height: 80vmax;
     top: -40vmax;
     left: -20vmax;
-    background: radial-gradient(circle at center, rgba(255, 214, 222, 0.4), rgba(255, 184, 255, 0.1), rgba(184, 225, 255, 0.05));
+    background: radial-gradient(circle at center, rgba(217, 184, 255, 0.4), rgba(255, 214, 222, 0.2), rgba(184, 225, 255, 0.1));
     border-radius: 50%;
     pointer-events: none;
     z-index: -1;
     animation: blob-movement 20s linear infinite alternate;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .button-hover {
+    @apply transition-all duration-300 hover:shadow-md hover:scale-105 active:scale-95;
   }
   
   @keyframes blob-movement {
@@ -92,4 +100,45 @@
       transform: translate(20vw, 20vh) scale(1.2);
     }
   }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
 }

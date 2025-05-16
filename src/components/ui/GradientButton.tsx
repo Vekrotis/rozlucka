@@ -19,7 +19,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   size = 'md',
   className = ''
 }) => {
-  const baseStyles = "inline-block rounded-xl font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30";
+  const baseStyles = "inline-block rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30";
   
   const variantStyles = {
     primary: "bg-gradient-to-r from-pink via-peach to-mandarin text-white",
@@ -28,9 +28,9 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   };
   
   const sizeStyles = {
-    sm: "text-xs py-2 px-4",
-    md: "text-sm py-3 px-6",
-    lg: "text-base py-4 px-8"
+    sm: "text-xs py-2 px-5",
+    md: "text-sm py-3 px-7",
+    lg: "text-base py-4 px-9"
   };
   
   const combinedClassNames = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;

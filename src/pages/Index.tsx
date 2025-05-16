@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import GradientButton from '@/components/ui/GradientButton';
 import { useToast } from '@/hooks/use-toast';
+import ConfettiEffect from '@/components/effects/ConfettiEffect';
 
 const Index = () => {
   const { toast } = useToast();
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
+  const [showConfetti, setShowConfetti] = useState<boolean>(true);
   const [quote] = useState<string>('„Není důležité, jak dlouho žijeme, ale jak. Není důležité, kam jdeme, ale jak se tam dostaneme. Není důležité, co máme, ale co děláme s tím, co máme."');
   const [author] = useState<string>("— Jan Werich");
   
@@ -26,10 +28,19 @@ const Index = () => {
         localStorage.setItem('firstVisit', 'false');
       }, 1000);
     }
+    
+    // Disable confetti after 5 seconds
+    const timer = setTimeout(() => {
+      setShowConfetti(false);
+    }, 5000);
+    
+    return () => clearTimeout(timer);
   }, [toast]);
   
   return (
     <AppLayout>
+      <ConfettiEffect active={showConfetti} duration={5000} />
+      
       <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-4 relative">
         <div 
           className={`opacity-0 transform ${showAnimation ? 'animate-fade-in' : ''}`}
@@ -98,8 +109,8 @@ const Index = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-            <div className="glass rounded-2xl p-6 hover:shadow-lg transition-all">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink to-peach flex items-center justify-center text-white mb-4">
+            <div className="glass rounded-3xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mb-4">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -114,8 +125,8 @@ const Index = () => {
               </GradientButton>
             </div>
             
-            <div className="glass rounded-2xl p-6 hover:shadow-lg transition-all">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple to-lightblue flex items-center justify-center text-white mb-4">
+            <div className="glass rounded-3xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mb-4">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                 </svg>
@@ -129,6 +140,63 @@ const Index = () => {
                 Poznat naši třídu
               </GradientButton>
             </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div className="glass rounded-3xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mb-4">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Galerie</h3>
+              <p className="text-gray-600 mb-4">
+                Prohlédněte si fotografie z naší společné cesty základní školou.
+              </p>
+              <GradientButton to="/galerie" variant="secondary" size="sm">
+                Prohlédnout
+              </GradientButton>
+            </div>
+            
+            <div className="glass rounded-3xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mb-4">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Vzpomínky</h3>
+              <p className="text-gray-600 mb-4">
+                Přečtěte si vzkazy a vzpomínky od spolužáků a učitelů.
+              </p>
+              <GradientButton to="/vzpominky" variant="primary" size="sm">
+                Číst vzpomínky
+              </GradientButton>
+            </div>
+            
+            <div className="glass rounded-3xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mb-4">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Informace</h3>
+              <p className="text-gray-600 mb-4">
+                Praktické informace o rozlučce - místo konání, čas a další detaily.
+              </p>
+              <GradientButton to="/info" variant="accent" size="sm">
+                Zobrazit info
+              </GradientButton>
+            </div>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <GradientButton 
+              to="/pozvanka?jmeno=Jan+Novák" 
+              variant="secondary"
+              className="hover:scale-105"
+            >
+              Ukázka pozvánky
+            </GradientButton>
           </div>
         </div>
       </section>

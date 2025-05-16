@@ -38,7 +38,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       {!isMobile && (
         <header 
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-            scrolled ? 'glass py-3' : 'bg-transparent py-5'
+            scrolled ? 'glass shadow-md py-3' : 'bg-transparent py-5'
           }`}
         >
           <div className="container mx-auto flex items-center justify-between">
@@ -48,35 +48,70 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             >
               9.B
             </Link>
-            <nav className="flex gap-8">
+            <nav className="flex gap-6">
               <Link 
                 to="/program" 
-                className={`font-medium transition hover:text-purple ${isActive('/program') ? 'text-purple' : ''}`}
+                className={`font-medium transition-colors relative ${
+                  isActive('/program') 
+                    ? 'text-purple' 
+                    : 'text-gray-700 hover:text-purple'
+                }`}
               >
+                {isActive('/program') && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple rounded-full"></span>
+                )}
                 Program
               </Link>
               <Link 
                 to="/trida" 
-                className={`font-medium transition hover:text-purple ${isActive('/trida') ? 'text-purple' : ''}`}
+                className={`font-medium transition-colors relative ${
+                  isActive('/trida') 
+                    ? 'text-purple' 
+                    : 'text-gray-700 hover:text-purple'
+                }`}
               >
+                {isActive('/trida') && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple rounded-full"></span>
+                )}
                 Třída
               </Link>
               <Link 
                 to="/galerie" 
-                className={`font-medium transition hover:text-purple ${isActive('/galerie') ? 'text-purple' : ''}`}
+                className={`font-medium transition-colors relative ${
+                  isActive('/galerie') 
+                    ? 'text-purple' 
+                    : 'text-gray-700 hover:text-purple'
+                }`}
               >
+                {isActive('/galerie') && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple rounded-full"></span>
+                )}
                 Galerie
               </Link>
               <Link 
                 to="/vzpominky" 
-                className={`font-medium transition hover:text-purple ${isActive('/vzpominky') ? 'text-purple' : ''}`}
+                className={`font-medium transition-colors relative ${
+                  isActive('/vzpominky') 
+                    ? 'text-purple' 
+                    : 'text-gray-700 hover:text-purple'
+                }`}
               >
+                {isActive('/vzpominky') && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple rounded-full"></span>
+                )}
                 Vzpomínky
               </Link>
               <Link 
                 to="/info" 
-                className={`font-medium transition hover:text-purple ${isActive('/info') ? 'text-purple' : ''}`}
+                className={`font-medium transition-colors relative ${
+                  isActive('/info') 
+                    ? 'text-purple' 
+                    : 'text-gray-700 hover:text-purple'
+                }`}
               >
+                {isActive('/info') && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple rounded-full"></span>
+                )}
                 Info
               </Link>
             </nav>
