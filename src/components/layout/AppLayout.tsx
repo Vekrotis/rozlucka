@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import BottomNav from './BottomNav';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useAutoScroll } from '@/hooks/use-auto-scroll';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -12,6 +13,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  
+  // Use the auto-scroll hook
+  useAutoScroll();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -127,7 +131,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       {/* Mobile bottom navigation */}
       {isMobile && <BottomNav />}
       
-      <footer className="p-4 text-center text-sm text-gray-500 font-caveat">
+      <footer className="p-4 text-center text-sm text-gray-500 font-caveat pb-20 md:pb-4">
         S láskou vytvořeno třídou 9.B 💜
       </footer>
     </div>

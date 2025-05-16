@@ -9,6 +9,7 @@ interface GradientButtonProps {
   variant?: 'primary' | 'secondary' | 'accent';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  disabled?: boolean;
 }
 
 const GradientButton: React.FC<GradientButtonProps> = ({ 
@@ -17,7 +18,8 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   onClick, 
   variant = 'primary',
   size = 'md',
-  className = ''
+  className = '',
+  disabled = false
 }) => {
   const baseStyles = "inline-block rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30";
   
@@ -28,14 +30,14 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   };
   
   const sizeStyles = {
-    sm: "text-xs py-2 px-5",
-    md: "text-sm py-3 px-7",
-    lg: "text-base py-4 px-9"
+    sm: "text-xs py-2 px-6",
+    md: "text-sm py-3 px-8",
+    lg: "text-base py-4 px-10"
   };
   
-  const combinedClassNames = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const combinedClassNames = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${className}`;
   
-  if (to) {
+  if (to && !disabled) {
     return (
       <Link to={to} className={combinedClassNames}>
         {children}
@@ -44,7 +46,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   }
   
   return (
-    <button onClick={onClick} className={combinedClassNames}>
+    <button onClick={disabled ? undefined : onClick} className={combinedClassNames} disabled={disabled}>
       {children}
     </button>
   );
