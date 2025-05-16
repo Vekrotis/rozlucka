@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 const Index = () => {
   const { toast } = useToast();
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
-  const [quote] = useState<string>("„Není důležité, jak dlouho žijeme, ale jak. Není důležité, kam jdeme, ale jak se tam dostaneme. Není důležité, co máme, ale co děláme s tím, co máme."");
+  const [quote] = useState<string>('„Není důležité, jak dlouho žijeme, ale jak. Není důležité, kam jdeme, ale jak se tam dostaneme. Není důležité, co máme, ale co děláme s tím, co máme."');
   const [author] = useState<string>("— Jan Werich");
   
   useEffect(() => {
