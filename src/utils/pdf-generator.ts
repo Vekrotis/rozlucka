@@ -24,25 +24,23 @@ export const generateInvitationPDF = async (elementId: string, filename: string 
         const clonedElement = clonedDoc.getElementById(elementId);
         if (clonedElement) {
           // Make sure all content is visible and properly styled for PDF
-          // Cast to HTMLElement to access style property
-          const htmlElement = clonedElement as HTMLElement;
-          htmlElement.style.padding = '30px';
-          htmlElement.style.maxWidth = '100%';
-          htmlElement.style.width = 'auto';
-          htmlElement.style.height = 'auto';
-          htmlElement.style.position = 'static';
-          htmlElement.style.opacity = '1';
+          clonedElement.style.padding = '30px';
+          clonedElement.style.maxWidth = '100%';
+          clonedElement.style.width = 'auto';
+          clonedElement.style.height = 'auto';
+          clonedElement.style.position = 'static';
+          clonedElement.style.opacity = '1';
           
-          // Hide buttons for PDF
-          const buttonsContainer = clonedElement.querySelector('#buttons-container');
-          if (buttonsContainer) {
-            (buttonsContainer as HTMLElement).style.display = 'none';
-          }
-
-          // Hide any other elements with pdf-hide class
-          const hideElements = clonedElement.querySelectorAll('.pdf-hide');
-          hideElements.forEach(el => {
-            (el as HTMLElement).style.display = 'none';
+          // Ensure all elements within are visible
+          const buttons = clonedElement.querySelectorAll('button');
+          buttons.forEach(button => {
+            button.style.backgroundColor = '#6C63FF';
+            button.style.color = 'white';
+            button.style.border = 'none';
+            button.style.padding = '10px 15px';
+            button.style.borderRadius = '8px';
+            button.style.margin = '5px';
+            button.style.fontSize = '14px';
           });
 
           // Show any hidden elements

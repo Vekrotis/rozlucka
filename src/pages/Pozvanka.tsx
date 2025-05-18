@@ -108,7 +108,7 @@ const Pozvanka = () => {
             </div>
           </div>
           
-          <div id="buttons-container" className="flex flex-col sm:flex-row gap-4 justify-center mt-6 pdf-hide">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
             <GradientButton to="/program" size="lg" variant="primary">
               Program dne
             </GradientButton>
