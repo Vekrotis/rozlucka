@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogDescription
 } from '@/components/ui/dialog';
+import { X as CloseIcon } from 'lucide-react';
 
 export type Album = {
   id: string;
@@ -31,7 +32,15 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white/95 backdrop-blur-sm border border-white/30 p-6 max-w-lg mx-auto">
+      <DialogContent className="bg-white/95 backdrop-blur-sm border border-white/30 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl">
+        <button 
+          onClick={onClose}
+          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+          aria-label="Zavřít"
+        >
+          <CloseIcon className="h-4 w-4 text-gray-500" />
+        </button>
+        
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">Vyberte album</DialogTitle>
           <DialogDescription>

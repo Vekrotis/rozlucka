@@ -4,6 +4,7 @@ import AppLayout from '@/components/layout/AppLayout';
 import AlbumSelector, { Album } from '@/components/gallery/AlbumSelector';
 import MediaViewer, { MediaItem } from '@/components/gallery/MediaViewer';
 import { Button } from '@/components/ui/button';
+import { Video } from 'lucide-react';
 
 // Sample data - in a real app, this would come from a database or API
 const SAMPLE_ALBUMS: Album[] = [
@@ -16,18 +17,18 @@ const SAMPLE_ALBUMS: Album[] = [
 // Sample media items - in a real app, these would be filtered by album
 const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   '1': [
-    { id: '101', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'První školní den', description: 'První školní den - září 2016' },
-    { id: '102', type: 'video', src: 'public/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
-    { id: '103', type: 'video', src: 'public/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
+    { id: '101', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'První školní den', description: 'První školní den - září 2016' },
+    { id: '102', type: 'video', src: '/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
+    { id: '103', type: 'video', src: '/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
   ],
   '3': [
-    { id: '301', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
-    { id: '302', type: 'video', src: 'public/20250328_085338000_iOS.jpg', description: 'Táborák' },
-    { id: '303', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
+    { id: '301', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
+    { id: '302', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Táborák' },
+    { id: '303', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
   ],
   '4': [
-    { id: '401', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: '9. třída', description: 'Poslední školní rok - 2025' },
-    { id: '402', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Kamarádi', description: 'Přátelé na celý život' },
+    { id: '401', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: '9. třída', description: 'Poslední školní rok - 2025' },
+    { id: '402', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Kamarádi', description: 'Přátelé na celý život' },
   ]
 };
 
@@ -55,10 +56,11 @@ const Galerie = () => {
   // Get currently displayed media items based on selected album
   const currentMediaItems = selectedAlbum ? SAMPLE_MEDIA[selectedAlbum] || [] : [];
   
-  // Determine if the media item is an image or video based on file extension
-  const getMediaType = (src: string): 'image' | 'video' => {
-    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
-    return videoExtensions.some(ext => src.toLowerCase().endsWith(ext)) ? 'video' : 'image';
+  // Helper to get a video thumbnail
+  const getVideoThumbnailUrl = (src: string) => {
+    // For actual implementation, you would use a real thumbnail generator
+    // or a service that provides thumbnails
+    return src;
   };
 
   return (
@@ -115,16 +117,20 @@ const Galerie = () => {
                     </div>
                   ) : (
                     <div className="w-full h-full bg-gray-100 relative">
-                      <img 
-                        src={item.src + '#poster'} 
-                        alt={item.alt || "Video thumbnail"}
-                        className="w-full h-full object-cover"
-                      />
+                      {/* Video thumbnail with a poster attribute */}
+                      <div className="w-full h-full">
+                        <video 
+                          src={item.src}
+                          className="w-full h-full object-cover"
+                          muted
+                          preload="metadata"
+                        >
+                          <source src={item.src} type="video/mp4" />
+                        </video>
+                      </div>
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                        <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center pl-1">
-                          <svg className="w-6 h-6 text-gray-800" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
+                        <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">
+                          <Video className="w-6 h-6 text-gray-800" />
                         </div>
                       </div>
                     </div>
