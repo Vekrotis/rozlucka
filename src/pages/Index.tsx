@@ -9,7 +9,7 @@ const Index = () => {
   const { toast } = useToast();
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
-  const [quote] = useState<string>('„Není důležité, kolik jsme toho stihli probrat, ale kolik jsme si z toho odnesli. Není důležité, kolikrát jsme zaspali, ale že jsme vždycky nějak přišli. Není důležité, kolik bylo testů, ale kolik z nich jsme přežili.“');
+  const [quote] = useState<string>('„Není důležité, kolik jsme toho stihli probrat, ale kolik jsme si z toho odnesli. Není důležité, kolikrát jsme zaspali, ale že jsme vždycky nějak přišli. Není důležité, kolik bylo testů, ale kolik z nich jsme přežili."');
   const [author] = useState<string>("— ChatGPT");
   
   useEffect(() => {
@@ -76,7 +76,7 @@ const Index = () => {
         
         <div 
           className={`absolute bottom-12 left-0 right-0 flex justify-center opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`}
-          style={{ animationDelay: '1.2s' }}
+          style={{ animationDelay: '1.2s', willChange: 'opacity' }}
         >
           <svg 
             className="w-6 h-6 animate-bounce text-gray-400" 
@@ -84,6 +84,7 @@ const Index = () => {
             stroke="currentColor" 
             viewBox="0 0 24 24" 
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path 
               strokeLinecap="round" 
