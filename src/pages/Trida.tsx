@@ -28,9 +28,14 @@ const Trida = () => {
               {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div key={item} className="text-center">
                   <div className="w-20 h-20 rounded-full bg-gray-200 mx-auto mb-2 flex items-center justify-center">
+                    {/* tady bude pfp učitele 
+                    nebo se použije tohle svg:
+                    
                     <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
+                    
+                    */}
                   </div>
                   <p className="font-medium">Jméno učitele</p>
                   <p className="text-sm text-gray-600">Předmět</p>
@@ -45,9 +50,15 @@ const Trida = () => {
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((item) => (
                 <div key={item} className="text-center hover:-translate-y-1 transition-transform">
                   <div className="w-20 h-20 rounded-full bg-gray-200 mx-auto mb-2 flex items-center justify-center">
+                    {/* tady bude pfp žáka 
+                    nebo se použije tohle svg:
+                    
                     <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
+                    
+                    */}
+
                   </div>
                   <p className="font-medium">Jméno žáka</p>
                 </div>

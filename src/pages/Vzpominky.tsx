@@ -29,7 +29,7 @@ const Vzpominky = () => {
               {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div key={item} className="bg-white/60 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                   <p className="italic text-gray-600 mb-4">
-                    "Nikdy nezapomenu na školní výlet do Parlamentu, kdy jsme nestihli bus do Plzně bus a nakonec 
+                    "Nikdy nezapomenu na školní výlet do Parlamentu, kdy jsme nestihli bus do Plzně a nakonec 
                     si užili den ve Varech."
                   </p>
                   <div className="flex items-center">
