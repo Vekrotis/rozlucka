@@ -22,7 +22,7 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
     { id: '103', type: 'video', src: '/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
   ],
   '3': [
-    { id: '301', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
+    { id: '301', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
     { id: '302', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Táborák' },
     { id: '303', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
   ],
