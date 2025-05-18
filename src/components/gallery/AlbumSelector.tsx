@@ -8,6 +8,7 @@ import {
   DialogDescription
 } from '@/components/ui/dialog';
 import { X as CloseIcon } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export type Album = {
   id: string;
@@ -48,8 +49,8 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
           </DialogDescription>
         </DialogHeader>
         
-        <div className="album-selector-content">
-          <div className="grid grid-cols-2 gap-4 mt-4 pb-4">
+        <ScrollArea className="flex-grow">
+          <div className="grid grid-cols-2 gap-4 mt-4 pb-4 pr-4">
             {albums.map((album) => (
               <div
                 key={album.id}
@@ -76,7 +77,7 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
               </div>
             ))}
           </div>
-        </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

@@ -20,6 +20,11 @@
   user-select: none;
 }
 
+/* Font styling for Caveat */
+.font-caveat {
+  font-family: 'Caveat', cursive;
+}
+
 /* Allow vertical images to be viewed fully in the media viewer */
 .media-viewer-image {
   max-height: 100%;

@@ -35,7 +35,8 @@ export const generateInvitationPDF = async (elementId: string, filename: string 
           // Remove buttons and elements with pdf-hide class
           const pdfHideElements = clonedElement.querySelectorAll('.pdf-hide');
           pdfHideElements.forEach(el => {
-            (el as HTMLElement).style.display = 'none';
+            const htmlEl = el as HTMLElement;
+            htmlEl.style.display = 'none';
           });
 
           // Show any hidden elements
@@ -47,13 +48,14 @@ export const generateInvitationPDF = async (elementId: string, filename: string 
             }
           });
 
-          // Set simple font and colors for better PDF rendering
-          const nameElement = clonedElement.querySelector('p.text-2xl, p.text-3xl');
+          // Set Caveat font and proper styling for the name element
+          const nameElement = clonedElement.querySelector('p.font-caveat');
           if (nameElement) {
             const htmlNameElement = nameElement as HTMLElement;
+            htmlNameElement.style.fontFamily = 'Caveat, cursive';
             htmlNameElement.style.fontWeight = 'bold';
+            htmlNameElement.style.fontSize = '30px';
             htmlNameElement.style.color = '#333';
-            htmlNameElement.style.fontSize = '24px';
             htmlNameElement.style.padding = '10px';
             htmlNameElement.style.margin = '16px 0';
             htmlNameElement.style.border = 'none';
