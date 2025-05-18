@@ -22,7 +22,7 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   ],
   '2': [
     { id: '201', type: 'image', src: 'https://source.unsplash.com/random/800x600?trip&1', alt: 'Školní výlet', description: 'Výlet do Prahy - 2018' },
-    { id: '202', type: 'image', src: 'https://source.unsplash.com/random/800x600?museum&1', alt: 'Muzeum', description: 'Návštěva muzea' },
+    { id: '202', type: 'image', src: 'https://raw.githubusercontent.com/Vekrotis/memory-glow-goodbye/refs/heads/main/public/20250328_085338000_iOS.jpg?token=GHSAT0AAAAAADA32LWA5A62KE4IOJWZBMIQ2BJ7XOA', alt: 'Muzeum', description: 'Návštěva muzea' },
   ],
   '3': [
     { id: '301', type: 'image', src: 'https://source.unsplash.com/random/800x600?nature&1', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },

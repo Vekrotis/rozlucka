@@ -13,7 +13,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({
   const isMobile = useIsMobile();
   const location = useLocation();
 
-  // Use the auto-scroll hook
   useAutoScroll();
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +73,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
       {/* Mobile bottom navigation */}
       {isMobile && <BottomNav />}
       
-      <footer className="p-4 text-center text-sm text-gray-500 font-caveat pb-20 md:pb-5">
+      <footer className="p-4 text-center text-base text-gray-500 font-caveat pb-40 md:pb-5">
         Web vytvořil David Šíma
       </footer>
     </div>;

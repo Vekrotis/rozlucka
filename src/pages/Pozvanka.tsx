@@ -63,7 +63,7 @@ const Pozvanka = () => {
 
   return (
     <AppLayout>
-      <ConfettiEffect active={showConfetti} duration={5000} />
+      <ConfettiEffect active={showConfetti} duration={10000} />
       
       <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-4 relative py-8">
         <div
