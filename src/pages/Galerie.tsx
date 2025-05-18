@@ -16,22 +16,18 @@ const SAMPLE_ALBUMS: Album[] = [
 // Sample media items - in a real app, these would be filtered by album
 const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   '1': [
-    { id: '101', type: 'image', src: 'https://source.unsplash.com/random/800x600?school&1', alt: 'První školní den', description: 'První školní den - září 2016' },
+    { id: '101', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'První školní den', description: 'První školní den - září 2016' },
     { id: '102', type: 'video', src: 'public/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
     { id: '103', type: 'video', src: 'public/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
   ],
-  '2': [
-    { id: '201', type: 'image', src: 'https://source.unsplash.com/random/800x600?trip&1', alt: 'Školní výlet', description: 'Výlet do Prahy - 2018' },
-    { id: '202', type: 'image', src: 'https://raw.githubusercontent.com/Vekrotis/memory-glow-goodbye/refs/heads/main/public/20250328_085338000_iOS.jpg?token=GHSAT0AAAAAADA32LWA5A62KE4IOJWZBMIQ2BJ7XOA', alt: 'Muzeum', description: 'Návštěva muzea' },
-  ],
   '3': [
-    { id: '301', type: 'image', src: 'https://source.unsplash.com/random/800x600?nature&1', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
-    { id: '302', type: 'video', src: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', description: 'Táborák' },
-    { id: '303', type: 'image', src: 'https://source.unsplash.com/random/800x600?forest&1', alt: 'Les', description: 'Výlet do lesa' },
+    { id: '301', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
+    { id: '302', type: 'video', src: 'public/20250328_085338000_iOS.jpg', description: 'Táborák' },
+    { id: '303', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
   ],
   '4': [
-    { id: '401', type: 'image', src: 'https://source.unsplash.com/random/800x600?graduation&1', alt: '9. třída', description: 'Poslední školní rok - 2025' },
-    { id: '402', type: 'image', src: 'https://source.unsplash.com/random/800x600?friends&1', alt: 'Kamarádi', description: 'Přátelé na celý život' },
+    { id: '401', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: '9. třída', description: 'Poslední školní rok - 2025' },
+    { id: '402', type: 'image', src: 'public/20250328_085338000_iOS.jpg', alt: 'Kamarádi', description: 'Přátelé na celý život' },
   ]
 };
 
@@ -151,7 +147,7 @@ const Galerie = () => {
           
           {currentMediaItems.length === 0 && selectedAlbum && (
             <div className="text-center py-12">
-              <p className="text-lg text-gray-500">V tomto albu zatím nejsou žádné vzpomínky.</p>
+              <p className="text-lg text-gray-500">V tomto albu zatím nejsou žádné vzpomínky 😭.</p>
             </div>
           )}
         </div>

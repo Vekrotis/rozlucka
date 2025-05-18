@@ -29,8 +29,8 @@ const Vzpominky = () => {
               {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div key={item} className="bg-white/60 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                   <p className="italic text-gray-600 mb-4">
-                    "Nikdy nezapomenu na školní výlet do Prahy, kdy jsme se ztratili v metru a nakonec 
-                    našli cestu zpět díky náhodné turistce."
+                    "Nikdy nezapomenu na školní výlet do Parlamentu, kdy jsme nestihli bus do Plzně bus a nakonec 
+                    si užili den ve Varech."
                   </p>
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-3">
@@ -39,8 +39,7 @@ const Vzpominky = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium">Jméno žáka</p>
-                      <p className="text-xs text-gray-500">5. třída</p>
+                      <p className="font-medium">Jméno</p>
                     </div>
                   </div>
                 </div>
@@ -54,7 +53,7 @@ const Vzpominky = () => {
               {[1, 2, 3, 4].map((item) => (
                 <div key={item} className="bg-white/60 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                   <p className="italic text-gray-600 mb-4">
-                    "Bylo mi ctí být součástí vaší vzdělávací cesty. Přeji vám mnoho úspěchů do budoucna 
+                    "Bylo mi ctí učit vás. Přeji vám mnoho úspěchů do budoucna 
                     a věřím, že využijete všechny získané vědomosti a zkušenosti."
                   </p>
                   <div className="flex items-center">
@@ -64,8 +63,8 @@ const Vzpominky = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium">Učitel</p>
-                      <p className="text-xs text-gray-500">Třídní učitel</p>
+                      <p className="font-medium">Jméno</p>
+                      <p className="text-xs text-gray-500">Učitelka matemitky v 6. - 8. třídě</p>
                     </div>
                   </div>
                 </div>

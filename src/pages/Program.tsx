@@ -49,7 +49,8 @@ const Program = () => {
     <AppLayout>
       <div className={`container mx-auto px-4 py-8 opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`}>
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 gradient-text">Program rozlučky</h1>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"> 
+            <span className="gradient-text">Program</span> rozlučky</h1>
           <p className="text-gray-600 mb-8">
             Přehled celého dne naší slavnostní rozlučky se základní školou.
           </p>
@@ -75,7 +76,7 @@ const Program = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-semibold">Kulturní Dům.....</h2>
+                <h2 className="text-xl font-semibold">Někde v Česku</h2>
                 <p className="text-gray-600">Ulice Obecná 12345, Ostrov</p>
               </div>
             </div>

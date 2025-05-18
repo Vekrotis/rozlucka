@@ -32,14 +32,14 @@ const Index = () => {
     // Disable confetti after 5 seconds
     const timer = setTimeout(() => {
       setShowConfetti(false);
-    }, 5000);
+    }, 10000);
     
     return () => clearTimeout(timer);
   }, [toast]);
   
   return (
     <AppLayout>
-      <ConfettiEffect active={showConfetti} duration={5000} />
+      <ConfettiEffect active={showConfetti} duration={10000} />
       
       <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-4 relative">
         <div 
