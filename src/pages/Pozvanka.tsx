@@ -77,7 +77,7 @@ const Pozvanka = () => {
             Osobní pozvánka pro
           </h1>
           
-          <p className="text-2xl md:text-3xl font-bold gradient-text my-6 py-2 px-4 border-2 border-dashed border-purple/30 rounded-xl">
+          <p className="text-2xl md:text-3xl font-bold my-6 py-2 px-4">
             {jmeno}
           </p>
           
@@ -108,7 +108,7 @@ const Pozvanka = () => {
             </div>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 pdf-hide">
             <GradientButton to="/program" size="lg" variant="primary">
               Program dne
             </GradientButton>

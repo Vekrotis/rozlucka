@@ -24,32 +24,41 @@ export const generateInvitationPDF = async (elementId: string, filename: string 
         const clonedElement = clonedDoc.getElementById(elementId);
         if (clonedElement) {
           // Make sure all content is visible and properly styled for PDF
-          clonedElement.style.padding = '30px';
-          clonedElement.style.maxWidth = '100%';
-          clonedElement.style.width = 'auto';
-          clonedElement.style.height = 'auto';
-          clonedElement.style.position = 'static';
-          clonedElement.style.opacity = '1';
+          const clonedHtmlElement = clonedElement as HTMLElement;
+          clonedHtmlElement.style.padding = '30px';
+          clonedHtmlElement.style.maxWidth = '100%';
+          clonedHtmlElement.style.width = 'auto';
+          clonedHtmlElement.style.height = 'auto';
+          clonedHtmlElement.style.position = 'static';
+          clonedHtmlElement.style.opacity = '1';
           
-          // Ensure all elements within are visible
-          const buttons = clonedElement.querySelectorAll('button');
-          buttons.forEach(button => {
-            button.style.backgroundColor = '#6C63FF';
-            button.style.color = 'white';
-            button.style.border = 'none';
-            button.style.padding = '10px 15px';
-            button.style.borderRadius = '8px';
-            button.style.margin = '5px';
-            button.style.fontSize = '14px';
+          // Remove buttons and elements with pdf-hide class
+          const pdfHideElements = clonedElement.querySelectorAll('.pdf-hide');
+          pdfHideElements.forEach(el => {
+            (el as HTMLElement).style.display = 'none';
           });
 
           // Show any hidden elements
           const allElements = clonedElement.querySelectorAll('*');
           allElements.forEach(el => {
-            if ((el as HTMLElement).style) {
-              (el as HTMLElement).style.opacity = '1';
+            const htmlEl = el as HTMLElement;
+            if (htmlEl.style && !htmlEl.classList.contains('pdf-hide')) {
+              htmlEl.style.opacity = '1';
             }
           });
+
+          // Set simple font and colors for better PDF rendering
+          const nameElement = clonedElement.querySelector('p.text-2xl, p.text-3xl');
+          if (nameElement) {
+            const htmlNameElement = nameElement as HTMLElement;
+            htmlNameElement.style.fontWeight = 'bold';
+            htmlNameElement.style.color = '#333';
+            htmlNameElement.style.fontSize = '24px';
+            htmlNameElement.style.padding = '10px';
+            htmlNameElement.style.margin = '16px 0';
+            htmlNameElement.style.border = 'none';
+            htmlNameElement.style.background = 'none';
+          }
         }
       }
     });

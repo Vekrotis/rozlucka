@@ -1,11 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Dialog,
   DialogContent,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { X as CloseIcon, Play } from 'lucide-react';
+import { X as CloseIcon } from 'lucide-react';
 
 export type MediaItem = {
   id: string;
@@ -98,7 +98,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             
             {currentItem.type === 'image' ? (
               <div 
-                className="relative w-full h-full flex items-center justify-center overflow-auto"
+                className="relative w-full h-full flex items-center justify-center overflow-auto media-viewer-image-container"
                 style={{ 
                   cursor: zoomLevel > 1 ? 'move' : 'default'
                 }}
@@ -106,12 +106,10 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 <img
                   src={currentItem.src}
                   alt={currentItem.alt || "Image"}
-                  className="max-w-none object-contain transition-transform duration-200"
+                  className="media-viewer-image transition-transform duration-200"
                   style={{ 
                     transform: `scale(${zoomLevel})`,
                     transformOrigin: 'center',
-                    maxHeight: '100%',
-                    maxWidth: '100%'
                   }}
                   onLoad={handleImageLoad}
                 />

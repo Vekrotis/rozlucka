@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import AlbumSelector, { Album } from '@/components/gallery/AlbumSelector';
@@ -24,12 +23,12 @@ const SAMPLE_ALBUMS: Album[] = [
 const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   '1': [
     { id: '101', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'První školní den', description: 'První školní den - září 2016' },
-    { id: '102', type: 'video', src: '/05-06-2022_121051.mp4', thumbnail: '/20250328_085338000_iOS.jpg', alt: 'Naše třída', description: 'Naše první třída' },
-    { id: '103', type: 'video', src: '/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', thumbnail: '/20250328_085338000_iOS.jpg', description: 'Video z první besídky' },
+    { id: '102', type: 'video', src: '/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
+    { id: '103', type: 'video', src: '/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
   ],
   '3': [
     { id: '301', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
-    { id: '302', type: 'video', src: '/05-06-2022_121051.mp4', thumbnail: '/20250328_085338000_iOS.jpg', description: 'Táborák' },
+    { id: '302', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Táborák' },
     { id: '303', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
   ],
   '4': [
@@ -38,15 +37,15 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   ],
   '2': [
     { id: '201', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Výlet do ZOO', description: 'Výlet do ZOO - 2018' },
-    { id: '202', type: 'video', src: '/05-06-2022_121051.mp4', thumbnail: '/20250328_085338000_iOS.jpg', description: 'Výlet do muzea' },
+    { id: '202', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Výlet do muzea' },
   ],
   '5': [
     { id: '501', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Fotbalový zápas', description: 'Meziškolní turnaj - 2022' },
-    { id: '502', type: 'video', src: '/05-06-2022_121051.mp4', thumbnail: '/20250328_085338000_iOS.jpg', description: 'Atletické závody' },
+    { id: '502', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Atletické závody' },
   ],
   '6': [
     { id: '601', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Vánoční besídka', description: 'Vánoční besídka - 2023' },
-    { id: '602', type: 'video', src: '/05-06-2022_121051.mp4', thumbnail: '/20250328_085338000_iOS.jpg', description: 'Vystoupení 3. třída' },
+    { id: '602', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Vystoupení 3. třída' },
   ],
   '7': [
     { id: '701', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Výtvarná práce', description: 'Projekt Příroda - 2021' },
@@ -54,7 +53,7 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   ],
   '8': [
     { id: '801', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Ekologický projekt', description: 'Den Země - 2023' },
-    { id: '802', type: 'video', src: '/05-06-2022_121051.mp4', thumbnail: '/20250328_085338000_iOS.jpg', description: 'Prezentace projektů' },
+    { id: '802', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Prezentace projektů' },
   ],
   '9': [
     { id: '901', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Turistika', description: 'Výlet na hrad - 2022' },
@@ -73,9 +72,19 @@ const Galerie = () => {
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
   const [isMediaViewerOpen, setIsMediaViewerOpen] = useState<boolean>(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0);
+  const [videoRefs] = useState<{ [key: string]: React.RefObject<HTMLVideoElement> }>({});
   
   useEffect(() => {
     setShowAnimation(true);
+    
+    // Create video refs for all video items
+    Object.keys(SAMPLE_MEDIA).forEach(albumId => {
+      SAMPLE_MEDIA[albumId].forEach(item => {
+        if (item.type === 'video') {
+          videoRefs[item.id] = React.createRef<HTMLVideoElement>();
+        }
+      });
+    });
   }, []);
 
   const handleAlbumSelect = (albumId: string) => {
@@ -145,24 +154,25 @@ const Galerie = () => {
                     </div>
                   ) : item.type === 'video' ? (
                     <div className="w-full h-full bg-gray-100 relative">
-                      {/* Video thumbnail */}
+                      {/* Video element for auto-thumbnail generation */}
                       <div className="w-full h-full">
-                        {item.thumbnail ? (
-                          <img 
-                            src={item.thumbnail} 
-                            alt={item.alt || "Video thumbnail"} 
-                            className="w-full h-full object-cover select-none" 
-                          />
-                        ) : (
-                          <video 
-                            src={item.src}
-                            className="w-full h-full object-cover"
-                            muted
-                            preload="metadata"
-                          >
-                            <source src={item.src} type="video/mp4" />
-                          </video>
-                        )}
+                        <video 
+                          src={item.src}
+                          className="w-full h-full object-cover"
+                          muted
+                          preload="metadata"
+                          ref={videoRefs[item.id]}
+                          onLoadedMetadata={(e) => {
+                            // Set current time to generate thumbnail
+                            const video = e.currentTarget;
+                            if (video.duration) {
+                              // Set to 25% into the video for a good thumbnail
+                              video.currentTime = video.duration * 0.25;
+                            }
+                          }}
+                        >
+                          <source src={item.src} type="video/mp4" />
+                        </video>
                       </div>
                       {/* Play button overlay */}
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20">
