@@ -75,7 +75,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
       {isMobile && <BottomNav />}
       
       <footer className="p-4 text-center text-sm text-gray-500 font-caveat pb-20 md:pb-5">
-        S láskou vytvořeno třídou 9.B 💜
+        Web vytvořil David Šíma
       </footer>
     </div>;
 };

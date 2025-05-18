@@ -22,7 +22,7 @@ const Pozvanka = () => {
     // Disable confetti after 5 seconds
     const timer = setTimeout(() => {
       setShowConfetti(false);
-    }, 5000);
+    }, 10000);
     
     return () => clearTimeout(timer);
   }, []);
@@ -72,7 +72,7 @@ const Pozvanka = () => {
           className={`max-w-2xl glass p-8 md:p-12 rounded-3xl opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`}
           style={{ animationDelay: '0.3s' }}
         >
-          <h2 className="text-lg md:text-xl font-caveat text-gray-600 mb-1">Základní škola Jihlava</h2>
+          <h2 className="text-lg md:text-xl font-caveat text-gray-600 mb-1">Základní a Mateřská škola Ostrov</h2>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             Osobní pozvánka pro
           </h1>
@@ -83,7 +83,7 @@ const Pozvanka = () => {
           
           <p className="text-lg mb-8">
             Dovolujeme si Vás pozvat na slavnostní rozloučení třídy 9.B se základní školou, 
-            které se uskuteční dne <strong>30. června 2025</strong> v prostorách školy.
+            které se uskuteční dne <strong>12. Března 2044</strong> v prostorách školy.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">

@@ -5,47 +5,36 @@ import Timeline from '@/components/program/Timeline';
 
 const programItems = [
   {
-    time: '13:00',
+    time: '17:00',
     title: 'Zahájení',
-    description: 'Slavnostní zahájení rozlučky s třídou 9.B v aule školy.',
+    description: 'Zahájení rozlučky s třídou 9.B.',
   },
   {
-    time: '13:30',
+    time: '17:15',
     title: 'Prezentace třídy',
     description: 'Představení třídy a vzpomínání na společné zážitky.',
     highlight: true,
   },
   {
-    time: '14:15',
-    title: 'Vystoupení žáků',
-    description: 'Hudební a taneční vystoupení připravená žáky 9.B.',
-  },
-  {
-    time: '15:00',
-    title: 'Přestávka s občerstvením',
-    description: 'Malé občerstvení a neformální rozhovory.',
-  },
-  {
-    time: '15:30',
+    time: '17:30',
     title: 'Poděkování učitelům',
-    description: 'Speciální poděkování všem učitelům, kteří nás provázeli školními lety.',
-    highlight: true,
-  },
-  {
-    time: '16:00',
-    title: 'Promítání vzpomínek',
-    description: 'Promítání fotografií a videí z celé školní docházky.',
-  },
-  {
-    time: '17:00',
-    title: 'Předání vysvědčení',
-    description: 'Slavnostní předání posledních vysvědčení na základní škole.',
-    highlight: true,
+    description: 'Krátké poděkování všem učitelům, kteří nás podporovali během naší školní docházky.',
   },
   {
     time: '18:00',
-    title: 'Závěrečný přípitek a rozloučení',
-    description: 'Slavnostní přípitek a oficiální ukončení základní školní docházky.',
+    title: 'Přestávka s občerstvením',
+    description: 'Občerstvení',
+  },
+  {
+    time: '18:45',
+    title: 'Předání vysvědčení',
+    description: 'Předání posledních vysvědčení na základní škole.',
+    highlight: true,
+  },
+  {
+    time: '19:10',
+    title: 'Rozloučení',
+    description: 'Přípitek a oficiální ukončení základní školní docházky.',
   },
 ];
 
@@ -73,8 +62,8 @@ const Program = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-semibold">Pátek, 28. června 2024</h2>
-                <p className="text-gray-600">Rozlučka se koná v aule základní školy</p>
+                <h2 className="text-xl font-semibold">Pátek, 12. Března 2044</h2>
+                <p className="text-gray-600">Rozlučka se koná v aule kulturáku</p>
               </div>
             </div>
             
@@ -86,8 +75,8 @@ const Program = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-semibold">Základní škola Jihlava</h2>
-                <p className="text-gray-600">Ulice Příkladová 123, Jihlava</p>
+                <h2 className="text-xl font-semibold">Kulturní Dům.....</h2>
+                <p className="text-gray-600">Ulice Obecná 12345, Ostrov</p>
               </div>
             </div>
           </div>
@@ -95,9 +84,9 @@ const Program = () => {
           <Timeline items={programItems} />
           
           <div className="mt-16 text-center">
-            <p className="text-lg font-medium text-gray-700 mb-3">Těšíme se na vás!</p>
+            <p className="text-lg font-medium text-gray-700 mb-3">Těšíme se na Vás!</p>
             <p className="text-gray-600">
-              Pro více informací kontaktujte třídního učitele nebo zástupce třídy.
+              Pro více informací kontaktujte třídního učitele nebo zástupce třídy :D.
             </p>
           </div>
         </div>

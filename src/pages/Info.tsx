@@ -30,10 +30,10 @@ const Info = () => {
                 </div>
                 <h2 className="text-xl font-semibold">Místo konání</h2>
               </div>
-              <p className="mb-2"><strong>Základní škola Jihlava</strong></p>
-              <p className="text-gray-600 mb-1">Ulice Příkladová 123</p>
-              <p className="text-gray-600 mb-1">586 01 Jihlava</p>
-              <p className="text-gray-600">Akce se koná v aule školy (2. patro)</p>
+              <p className="mb-2"><strong>Kulturní Dům....</strong></p>
+              <p className="text-gray-600 mb-1">Ulice Obecná 12345</p>
+              <p className="text-gray-600 mb-1">363 01 Ostrov</p>
+              <p className="text-gray-600">Akce se koná v nějké aule</p>
             </div>
             
             <div className="glass p-6 rounded-2xl">
@@ -45,9 +45,9 @@ const Info = () => {
                 </div>
                 <h2 className="text-xl font-semibold">Datum a čas</h2>
               </div>
-              <p className="mb-2"><strong>Pátek, 28. června 2024</strong></p>
-              <p className="text-gray-600 mb-1">Začátek: 13:00</p>
-              <p className="text-gray-600">Předpokládaný konec: 18:30</p>
+              <p className="mb-2"><strong>Pátek, 12. Březena 2044</strong></p>
+              <p className="text-gray-600 mb-1">Začátek: 17:00</p>
+              <p className="text-gray-600">Předpokládaný konec: 19:00</p>
             </div>
           </div>
           
@@ -60,9 +60,6 @@ const Info = () => {
                 </p>
               </div>
             </div>
-            <p className="mt-3 text-sm text-gray-500 text-center">
-              Pro navigaci klikněte na mapu nebo použijte adresu: Ulice Příkladová 123, Jihlava
-            </p>
           </div>
           
           <div className="mb-12">
@@ -74,16 +71,16 @@ const Info = () => {
                     Je účast na rozlučce povinná?
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-4">
-                    Ne, účast není povinná, ale velmi si vážíme každého, kdo se zúčastní této důležité životní události.
+                    Ne, účast není povinná, ale velmi si vážíme každého, kdo se zúčastní této události.
                   </AccordionContent>
                 </AccordionItem>
                 
                 <AccordionItem value="item-2">
                   <AccordionTrigger className="px-5 py-4 hover:bg-purple/5 rounded-xl">
-                    Kolik osob mohu vzít s sebou?
+                    Můžu v průběhu akce útéct?
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-4">
-                    Každý žák může pozvat až 4 osoby (rodiče, sourozence, prarodiče). Pokud byste chtěli přivést více hostů, kontaktujte prosím třídního učitele předem.
+                    Bohužel ne, akce bude probíhat v uzamčeném prostoru a není možné ji opustit během jejího průběhu. Po skončení akce si můžete samozřejmě odejít kdykoliv. 😘
                   </AccordionContent>
                 </AccordionItem>
                 
@@ -92,7 +89,7 @@ const Info = () => {
                     Bude k dispozici občerstvení?
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-4">
-                    Ano, během přestávky bude připraveno drobné občerstvení a nápoje. Na konci akce proběhne slavnostní přípitek (pro děti nealkoholický).
+                    Nevíme, ale asi ano.
                   </AccordionContent>
                 </AccordionItem>
                 
@@ -101,7 +98,7 @@ const Info = () => {
                     Jak formálně se mám obléct?
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-4">
-                    Doporučujeme společenské oblečení odpovídající slavnostní příležitosti. Žáci 9.B budou oblečeni formálně.
+                    Doporučujeme společenské oblečení odpovídající slavnostní příležitosti. Žáci 9.B budou oblečeni formálně :DD.
                   </AccordionContent>
                 </AccordionItem>
                 
@@ -110,7 +107,7 @@ const Info = () => {
                     Mohu přinést dárek pro učitele?
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-4">
-                    Za třídní učitele a vedení školy bude připraven společný dárek. Pokud byste chtěli osobně někoho obdarovat, můžete tak samozřejmě učinit individuálně.
+                    9.B si připraví dárky pro učitele. Pokud byste chtěli osobně někoho obdarovat, můžete tak samozřejmě učinit individuálně.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -125,17 +122,17 @@ const Info = () => {
             
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
-                <h3 className="font-semibold mb-2">Třídní učitel</h3>
-                <p className="text-gray-600 mb-1">Mgr. Jan Novák</p>
-                <p className="text-gray-600 mb-1">E-mail: j.novak@zs-jihlava.cz</p>
-                <p className="text-gray-600">Tel.: +420 777 123 456</p>
+                <h3 className="font-semibold mb-2">Třídní učitelka</h3>
+                <p className="text-gray-600 mb-1">Mgr. Jaroslava Piherová</p>
+                <p className="text-gray-600 mb-1">E-mail:</p>
+                <p className="text-gray-600">Tel.:</p>
               </div>
               
               <div className="flex-1">
                 <h3 className="font-semibold mb-2">Zástupce třídy</h3>
-                <p className="text-gray-600 mb-1">Tereza Veselá</p>
-                <p className="text-gray-600 mb-1">E-mail: terezaV@email.cz</p>
-                <p className="text-gray-600">Tel.: +420 777 654 321</p>
+                <p className="text-gray-600 mb-1">David Vreštiak, protože je na něj největší spoleh xDD</p>
+                <p className="text-gray-600 mb-1">E-mail:</p>
+                <p className="text-gray-600">Tel.:</p>
               </div>
             </div>
           </div>

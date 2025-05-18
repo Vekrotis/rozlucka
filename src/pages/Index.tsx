@@ -9,8 +9,8 @@ const Index = () => {
   const { toast } = useToast();
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
-  const [quote] = useState<string>('„Není důležité, jak dlouho žijeme, ale jak. Není důležité, kam jdeme, ale jak se tam dostaneme. Není důležité, co máme, ale co děláme s tím, co máme."');
-  const [author] = useState<string>("— Jan Werich");
+  const [quote] = useState<string>('„Není důležité, kolik jsme toho stihli probrat, ale kolik jsme si z toho odnesli. Není důležité, kolikrát jsme zaspali, ale že jsme vždycky nějak přišli. Není důležité, kolik bylo testů, ale kolik z nich jsme přežili.“');
+  const [author] = useState<string>("— ChatGPT");
   
   useEffect(() => {
     setShowAnimation(true);
@@ -46,7 +46,7 @@ const Index = () => {
           className={`opacity-0 transform ${showAnimation ? 'animate-fade-in' : ''}`}
           style={{ animationDelay: '0.2s' }}
         >
-          <h2 className="text-lg md:text-xl font-caveat text-gray-600 mb-1">Základní škola Jihlava</h2>
+          <h2 className="text-lg md:text-xl font-caveat text-gray-600 mb-1">Základní a Mateřská škola Ostrov</h2>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
             Rozloučení se třídou <span className="gradient-text">9.B</span>
           </h1>
@@ -187,16 +187,6 @@ const Index = () => {
                 Zobrazit info
               </GradientButton>
             </div>
-          </div>
-          
-          <div className="mt-12 text-center">
-            <GradientButton 
-              to="/pozvanka?jmeno=Jan+Novák" 
-              variant="secondary"
-              className="hover:scale-105"
-            >
-              Ukázka pozvánky
-            </GradientButton>
           </div>
         </div>
       </section>
