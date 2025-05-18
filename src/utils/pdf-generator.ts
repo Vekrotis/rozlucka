@@ -31,16 +31,16 @@ export const generateInvitationPDF = async (elementId: string, filename: string 
           clonedElement.style.position = 'static';
           clonedElement.style.opacity = '1';
           
-          // Ensure all elements within are visible
-          const buttons = clonedElement.querySelectorAll('button');
-          buttons.forEach(button => {
-            button.style.backgroundColor = '#6C63FF';
-            button.style.color = 'white';
-            button.style.border = 'none';
-            button.style.padding = '10px 15px';
-            button.style.borderRadius = '8px';
-            button.style.margin = '5px';
-            button.style.fontSize = '14px';
+          // Hide buttons for PDF
+          const buttonsContainer = clonedElement.querySelector('#buttons-container');
+          if (buttonsContainer) {
+            buttonsContainer.style.display = 'none';
+          }
+
+          // Hide any other elements with pdf-hide class
+          const hideElements = clonedElement.querySelectorAll('.pdf-hide');
+          hideElements.forEach(el => {
+            (el as HTMLElement).style.display = 'none';
           });
 
           // Show any hidden elements

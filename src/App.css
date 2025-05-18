@@ -35,3 +35,10 @@
     overflow: hidden !important;
   }
 }
+
+/* Add PDF specific styles */
+@media print {
+  .pdf-hide {
+    display: none !important;
+  }
+}

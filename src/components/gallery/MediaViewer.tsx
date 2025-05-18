@@ -76,7 +76,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
   
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white md:rounded-xl rounded-2xl overflow-hidden">
+      <DialogContent className="media-viewer-dialog max-w-4xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white md:rounded-xl rounded-2xl overflow-hidden">
         <DialogTitle className="sr-only">Prohlížeč médií</DialogTitle>
         <div className="relative w-full h-full flex flex-col">
           {/* Close button */}
@@ -106,12 +106,10 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 <img
                   src={currentItem.src}
                   alt={currentItem.alt || "Image"}
-                  className="max-w-none object-contain transition-transform duration-200"
+                  className="media-viewer-image max-w-none object-contain transition-transform duration-200"
                   style={{ 
                     transform: `scale(${zoomLevel})`,
                     transformOrigin: 'center',
-                    maxHeight: '100%',
-                    maxWidth: '100%'
                   }}
                   onLoad={handleImageLoad}
                 />
@@ -123,7 +121,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 autoPlay
                 className="max-h-full max-w-full"
                 onLoadedData={handleImageLoad}
-                poster={currentItem.thumbnail || `${currentItem.src}#t=0.5`}
+                poster={currentItem.thumbnail || undefined}
               />
             ) : (
               <div className="flex flex-col items-center justify-center w-full h-full">
