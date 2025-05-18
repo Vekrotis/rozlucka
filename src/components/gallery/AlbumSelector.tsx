@@ -32,13 +32,13 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white/95 backdrop-blur-sm border border-white/30 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl">
+      <DialogContent className="bg-white/95 backdrop-blur-sm border border-white/30 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl max-h-[80vh] overflow-auto">
         <button 
           onClick={onClose}
-          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 transition-colors z-10"
           aria-label="Zavřít"
         >
-          <CloseIcon className="h-4 w-4 text-gray-500" />
+          <CloseIcon className="h-5 w-5 text-gray-500" />
         </button>
         
         <DialogHeader>
@@ -48,7 +48,7 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
           </DialogDescription>
         </DialogHeader>
         
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-2 gap-4 mt-4 pb-2 overflow-y-auto">
           {albums.map((album) => (
             <div
               key={album.id}
