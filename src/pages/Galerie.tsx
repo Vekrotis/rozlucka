@@ -17,8 +17,8 @@ const SAMPLE_ALBUMS: Album[] = [
 const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   '1': [
     { id: '101', type: 'image', src: 'https://source.unsplash.com/random/800x600?school&1', alt: 'První školní den', description: 'První školní den - září 2016' },
-    { id: '102', type: 'image', src: 'https://source.unsplash.com/random/800x600?classroom&1', alt: 'Naše třída', description: 'Naše první třída' },
-    { id: '103', type: 'video', src: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', description: 'Video z první besídky' },
+    { id: '102', type: 'video', src: 'public/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
+    { id: '103', type: 'video', src: 'public/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
   ],
   '2': [
     { id: '201', type: 'image', src: 'https://source.unsplash.com/random/800x600?trip&1', alt: 'Školní výlet', description: 'Výlet do Prahy - 2018' },
