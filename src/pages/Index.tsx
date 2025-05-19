@@ -78,7 +78,7 @@ const Index = () => {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">Naše společná cesta</h2>
-          <p className="mb-4 text-gray-700">
+          <p className="mb-4 text-gray-200">
             Devět let společného studia, radostí i starostí. Zažili jsme toho hodně - od prvních krůčků 
             ve škole až po přípravu na životní zkoušky. Tato stránka je naším poděkováním všem, 
             kdo byli součástí naší cesty.
