@@ -33,7 +33,7 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="album-selector-dialog bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border border-white/30 dark:border-white/10 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl max-h-[80vh]">
+      <DialogContent className="album-selector-dialog bg-white/85 dark:bg-gray-900/85 backdrop-blur-sm border border-white/30 dark:border-white/10 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl max-h-[80vh]">
         <button 
           onClick={onClose}
           className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
@@ -55,7 +55,7 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
               <div
                 key={album.id}
                 onClick={() => onSelect(album.id)}
-                className="p-3 rounded-xl bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-700 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                className="p-3 rounded-xl bg-white dark:bg-gray-800 dark:border-gray-700 border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="aspect-video rounded-lg bg-gray-100 dark:bg-gray-700 overflow-hidden mb-2">
                   {album.coverImage ? (

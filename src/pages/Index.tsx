@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import GradientButton from '@/components/ui/GradientButton';
@@ -70,11 +69,11 @@ const Index = () => {
           </GradientButton>
         </div>
         
-        <div className={`absolute bottom-8 md:bottom-12 left-0 right-0 flex justify-center opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`} style={{
+        <div className={`absolute bottom-10 md:bottom-12 left-0 right-0 flex justify-center opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`} style={{
         animationDelay: '1.2s',
         willChange: 'opacity'
       }}>
-          <svg className="w-6 h-6 animate-bounce text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg className="w-6 h-6 animate-bounce text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>

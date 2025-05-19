@@ -52,3 +52,8 @@
   overflow-y: auto;
   padding: 0 1px;
 }
+
+/* Center align all text on the Pozvanka page */
+.pozvanka-page * {
+  text-align: center;
+}

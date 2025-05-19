@@ -21,12 +21,12 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   className = '',
   disabled = false
 }) => {
-  const baseStyles = "inline-flex items-center justify-center rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30 dark:border-white/10";
+  const baseStyles = "inline-flex items-center justify-center rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30 dark:border-white/20";
   
   const variantStyles = {
-    primary: "bg-gradient-to-r from-pink via-peach to-mandarin text-white dark:from-pink/90 dark:via-peach/90 dark:to-mandarin/90 dark:text-white/90",
-    secondary: "bg-gradient-to-r from-lightblue via-turquoise to-mint text-white dark:from-lightblue/90 dark:via-turquoise/90 dark:to-mint/90 dark:text-white/90", 
-    accent: "bg-gradient-to-r from-purple to-lightblue text-white dark:from-purple/90 dark:via-purple/70 dark:to-lightblue/90 dark:text-white/90"
+    primary: "bg-gradient-to-r from-pink via-peach to-mandarin text-white dark:from-pink/95 dark:via-peach/95 dark:to-mandarin/95 dark:text-white/95 dark:shadow-pink/20",
+    secondary: "bg-gradient-to-r from-lightblue via-turquoise to-mint text-white dark:from-lightblue/95 dark:via-turquoise/95 dark:to-mint/95 dark:text-white/95 dark:shadow-lightblue/20", 
+    accent: "bg-gradient-to-r from-purple to-lightblue text-white dark:from-purple/95 dark:to-lightblue/95 dark:text-white/95 dark:shadow-purple/20"
   };
   
   const sizeStyles = {

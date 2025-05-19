@@ -17,7 +17,7 @@ const BottomNav: React.FC = () => {
   
   return (
     <>
-      <nav className="fixed bottom-5 left-1/2 transform -translate-x-1/2 glass p-1.5 z-50 rounded-full border border-white/30 shadow-lg bg-white/65 dark:bg-gray-900/65">
+      <nav className="fixed bottom-5 left-1/2 transform -translate-x-1/2 glass p-1.5 z-50 rounded-full border border-white/30 shadow-lg bg-white/55 dark:bg-gray-900/55">
         <div className="flex items-center px-2">
           <Link 
             to="/program" 

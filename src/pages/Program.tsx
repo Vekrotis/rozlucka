@@ -51,7 +51,7 @@ const Program = () => {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"> 
             <span className="gradient-text">Program</span> rozlučky</h1>
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-600 dark:text-gray-300 mb-8">
             Přehled celého dne naší slavnostní rozlučky se základní školou.
           </p>
           
@@ -63,8 +63,8 @@ const Program = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-semibold">Pátek, 12. Března 2044</h2>
-                <p className="text-gray-600">Rozlučka se koná v aule kulturáku</p>
+                <h2 className="text-xl font-semibold dark:text-white">Pátek, 12. Března 2044</h2>
+                <p className="text-gray-600 dark:text-gray-300">Rozlučka se koná v aule kulturáku</p>
               </div>
             </div>
             
@@ -76,8 +76,8 @@ const Program = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-semibold">Někde v Česku</h2>
-                <p className="text-gray-600">Ulice Obecná 12345, Ostrov</p>
+                <h2 className="text-xl font-semibold dark:text-white">Někde v Česku</h2>
+                <p className="text-gray-600 dark:text-gray-300">Ulice Obecná 12345, Ostrov</p>
               </div>
             </div>
           </div>
@@ -85,8 +85,8 @@ const Program = () => {
           <Timeline items={programItems} />
           
           <div className="mt-16 text-center">
-            <p className="text-lg font-medium text-gray-700 mb-3">Těšíme se na Vás!</p>
-            <p className="text-gray-600">
+            <p className="text-lg font-medium text-gray-700 dark:text-gray-200 mb-3">Těšíme se na Vás!</p>
+            <p className="text-gray-600 dark:text-gray-300">
               Pro více informací kontaktujte třídního učitele nebo zástupce třídy :D.
             </p>
           </div>
