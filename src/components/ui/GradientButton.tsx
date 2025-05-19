@@ -21,12 +21,12 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   className = '',
   disabled = false
 }) => {
-  const baseStyles = "inline-flex items-center justify-center rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30";
+  const baseStyles = "inline-flex items-center justify-center rounded-full font-medium text-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 border border-white/30 dark:border-white/10";
   
   const variantStyles = {
-    primary: "bg-gradient-to-r from-pink via-peach to-mandarin text-white",
-    secondary: "bg-gradient-to-r from-lightblue via-turquoise to-mint text-white", 
-    accent: "bg-gradient-to-r from-purple to-lightblue text-white"
+    primary: "bg-gradient-to-r from-pink via-peach to-mandarin text-white dark:from-pink/90 dark:via-peach/90 dark:to-mandarin/90 dark:text-white/90",
+    secondary: "bg-gradient-to-r from-lightblue via-turquoise to-mint text-white dark:from-lightblue/90 dark:via-turquoise/90 dark:to-mint/90 dark:text-white/90", 
+    accent: "bg-gradient-to-r from-purple to-lightblue text-white dark:from-purple/90 dark:via-purple/70 dark:to-lightblue/90 dark:text-white/90"
   };
   
   const sizeStyles = {

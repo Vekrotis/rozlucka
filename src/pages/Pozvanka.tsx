@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import AppLayout from '@/components/layout/AppLayout';
@@ -21,9 +22,9 @@ function useCapitalizedSearchParam(param: string, fallback: string): string {
 function useGenderGradient(): string {
   const [searchParams] = useSearchParams();
   const gender = (searchParams.get('typ') || '').toLowerCase();
-  if (gender === 'muz' || gender === 'muž') return 'from-blue-500 to-blue-300';
-  if (gender === 'zena' || gender === 'žena') return 'from-pink to-pink-600';
-  return 'from-yellow-400 to-yellow-200';
+  if (gender === 'muz' || gender === 'muž') return 'from-blue-500 via-blue-400 to-lightblue';
+  if (gender === 'zena' || gender === 'žena') return 'from-pink via-pink-500 to-pink-400';
+  return 'from-yellow-400 via-yellow-300 to-yellow-200'; // Neutral default
 }
 
 const Pozvanka = () => {
@@ -85,8 +86,8 @@ const Pozvanka = () => {
           className={`max-w-2xl glass p-8 md:p-12 rounded-3xl opacity-0 ${showAnimation ? 'animate-fade-in' : ''} select-none`}
           style={{ animationDelay: '0.3s' }}
         >
-          <h2 className="text-lg md:text-xl font-caveat text-gray-600 mb-1">Základní a Mateřská škola Ostrov</h2>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-lg md:text-xl font-caveat text-gray-600 dark:text-gray-300 mb-1">Základní a Mateřská škola Ostrov</h2>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 dark:text-white">
             Osobní pozvánka pro
           </h1>
           <p
@@ -94,7 +95,7 @@ const Pozvanka = () => {
           >
             {jmeno}
           </p>
-          <p className="text-lg mb-8">
+          <p className="text-lg mb-8 dark:text-gray-200">
             Dovolujeme si Vás pozvat na slavnostní rozloučení třídy 9.B se základní školou, 
             které se uskuteční dne <strong>12. Března 2044</strong> v prostorách školy.
           </p>
@@ -107,7 +108,7 @@ const Pozvanka = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
               </div>
-              <p className="text-sm font-medium">Kulturní Dům, Ostrov</p>
+              <p className="text-sm font-medium dark:text-gray-300">Kulturní Dům, Ostrov</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple to-lightblue flex items-center justify-center text-white mb-2">
@@ -115,7 +116,7 @@ const Pozvanka = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-              <p className="text-sm font-medium">12. Března 2044, 17:00</p>
+              <p className="text-sm font-medium dark:text-gray-300">12. Března 2044, 17:00</p>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 pdf-hide">

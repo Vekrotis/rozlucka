@@ -94,11 +94,27 @@
   .dark .glass {
     @apply bg-gray-900/70 backdrop-blur-md border border-gray-800/20;
   }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .dark .card-hover {
+    @apply hover:shadow-gray-900/30;
+  }
+  
+  .search-field {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm;
+  }
 }
 
 @layer components {
   .gradient-text {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-purple via-pink to-peach font-bold;
+  }
+  
+  .dark .gradient-text {
+    @apply from-purple/90 via-pink/90 to-peach/90;
   }
   
   .gradient-bg {

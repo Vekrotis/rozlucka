@@ -197,13 +197,13 @@ const Trida = () => {
               placeholder="Hledat učitele, předměty nebo žáky..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-4 py-2"
+              className="pl-10 pr-4 py-2 search-field"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
           </div>
 
           <div className="glass rounded-2xl p-6 hover:shadow-lg transition-all mb-12">
-            <h2 className="text-xl font-semibold mb-4">Naši učitelé</h2>
+            <h2 className="text-xl font-semibold mb-4 dark:text-white">Naši učitelé</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {searchResults.teachers.length > 0 ? (
                 searchResults.teachers.map((teacher) => (
@@ -225,7 +225,7 @@ const Trida = () => {
                         </svg>
                       )}
                     </div>
-                    <p className="font-medium">{highlightText(teacher.name)}</p>
+                    <p className="font-medium dark:text-gray-200">{highlightText(teacher.name)}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{highlightText(teacher.subject || '')}</p>
                   </div>
                 ))
@@ -236,7 +236,7 @@ const Trida = () => {
           </div>
 
           <div className="glass rounded-2xl p-6 hover:shadow-lg transition-all mb-12">
-            <h2 className="text-xl font-semibold mb-4">Naši žáci</h2>
+            <h2 className="text-xl font-semibold mb-4 dark:text-white">Naši žáci</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {searchResults.students.length > 0 ? (
                 searchResults.students.map((student) => (
@@ -258,7 +258,7 @@ const Trida = () => {
                         </svg>
                       )}
                     </div>
-                    <p className="font-medium">{highlightText(student.name)}</p>
+                    <p className="font-medium dark:text-gray-200">{highlightText(student.name)}</p>
                   </div>
                 ))
               ) : (
