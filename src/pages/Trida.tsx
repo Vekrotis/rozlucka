@@ -190,17 +190,16 @@ const Trida = () => {
             Seznamte se s naší třídou 9.B, našimi učiteli a všemi, kdo nás během těchto devíti let
             provázeli a podporovali.
           </p>
-
-          <div className="relative mb-8">
+            <div className="relative mb-8">
             <Input
               type="text"
               placeholder="Hledat učitele, předměty nebo žáky..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-4 py-2 search-field"
+              className="pl-10 pr-4 py-2 search-field bg-white/20 dark:bg-gray-800/70 backdrop-blur"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
-          </div>
+            </div>
 
           <div className="glass rounded-2xl p-6 hover:shadow-lg transition-all mb-12">
             <h2 className="text-xl font-semibold mb-4 dark:text-white">Naši učitelé</h2>

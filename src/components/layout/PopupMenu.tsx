@@ -42,11 +42,11 @@ const PopupMenu: React.FC<PopupMenuProps> = ({
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-end justify-center pb-24">
       <div ref={menuRef} className={`w-[90%] bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/30 dark:border-white/10 transition-all duration-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-lg font-bold gradient-text">Menu</h2>
+          <h2 className="text-lg font-bold text-gray-700 dark:text-gray-200">Menu</h2>
           <div className="flex items-center gap-3">
             <ThemeToggle size="sm" />
             <button onClick={handleClose} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <svg className="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-6 h-6 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

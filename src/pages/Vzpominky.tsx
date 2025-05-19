@@ -6,7 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 const bestMemories = [
   {
     text: 'Nikdy nezapomenu na školní výlet do Parlamentu, kdy jsme nestihli bus do Plzně a nakonec si užili den ve Varech.',
-    name: 'Natalie Khailová',
+    name: 'Natalie Kheilová',
     image: 'zaci/Untitled6.png',
   },
   {
