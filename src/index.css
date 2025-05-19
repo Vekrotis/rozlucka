@@ -39,6 +39,36 @@
     
     --radius: 1rem;
   }
+  
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 346 100% 92%;
+    --primary-foreground: 355 100% 20%;
+    
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    
+    --accent: 273 100% 86%;
+    --accent-foreground: 240 5.9% 10%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346 100% 92%;
+  }
  
   * {
     @apply border-border;
@@ -46,7 +76,11 @@
   
   body {
     @apply bg-background text-foreground font-inter;
-    background: linear-gradient(to bottom, #ffffff, #fff8f7);
+    background: linear-gradient(to bottom, var(--background-light, #ffffff), var(--background-darker, #fff8f7));
+  }
+  
+  .dark body {
+    background: linear-gradient(to bottom, var(--background-dark, #121212), var(--background-darker-dark, #1a1a1a));
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -55,6 +89,10 @@
 
   .glass {
     @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+  
+  .dark .glass {
+    @apply bg-gray-900/70 backdrop-blur-md border border-gray-800/20;
   }
 }
 
@@ -84,6 +122,10 @@
     animation: blob-movement 20s linear infinite alternate;
   }
   
+  .dark .blob-effect {
+    background: radial-gradient(circle at center, rgba(217, 184, 255, 0.15), rgba(255, 214, 222, 0.1), rgba(184, 225, 255, 0.05));
+  }
+  
   .card-hover {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
@@ -99,6 +141,10 @@
     100% {
       transform: translate(20vw, 20vh) scale(1.2);
     }
+  }
+  
+  .highlight {
+    @apply bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-100 px-1 py-0.5 rounded;
   }
 }
 
