@@ -8,6 +8,7 @@
     height: 30px !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
+    bottom: 5px !important;
   }
 }
 
@@ -57,3 +58,20 @@
 .pozvanka-page * {
   text-align: center;
 }
+
+/* Dark mode improvements for arrow */
+.dark .arrow-down {
+  filter: brightness(1.5);
+}
+
+/* Bottom nav transparency adjustment */
+@media (max-width: 768px) {
+  .bottom-nav {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  .dark .bottom-nav {
+    background-color: rgba(30, 30, 35, 0.9) !important;
+  }
+}
+

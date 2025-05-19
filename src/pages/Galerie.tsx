@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import AlbumSelector, { Album } from '@/components/gallery/AlbumSelector';
@@ -108,14 +109,14 @@ const Galerie = () => {
             <span className="gradient-text">Galerie</span> vzpomínek
           </h1>
           
-          <p className="text-lg text-gray-700 mb-8 select-none">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 select-none">
             Projděte si fotografie a vzpomínky na naši společnou cestu základní školou. 
             Zde najdete nejdůležitější momenty z našich devíti let.
           </p>
           
           <div className="glass rounded-2xl p-6 mb-10">
             <div className="flex flex-wrap items-center justify-between gap-4">
-              <h2 className="text-xl font-semibold select-none">
+              <h2 className="text-xl font-semibold select-none dark:text-white">
                 {selectedAlbum 
                   ? SAMPLE_ALBUMS.find(a => a.id === selectedAlbum)?.title || 'Album'
                   : 'Všechny vzpomínky'
@@ -124,7 +125,7 @@ const Galerie = () => {
               
               <Button 
                 onClick={() => setIsAlbumSelectorOpen(true)}
-                className="rounded-full bg-white hover:bg-purple/10 text-gray-700 hover:text-purple border border-gray-200"
+                className="rounded-full bg-white dark:bg-gray-800 hover:bg-purple/10 dark:hover:bg-purple/20 text-gray-700 dark:text-gray-300 hover:text-purple dark:hover:text-purple border border-gray-200 dark:border-gray-700"
                 variant="ghost"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +146,7 @@ const Galerie = () => {
                   onClick={() => handleMediaClick(index)}
                 >
                   {item.type === 'image' ? (
-                    <div className="w-full h-full bg-gray-100">
+                    <div className="w-full h-full bg-gray-100 dark:bg-gray-800">
                       <img 
                         src={item.src} 
                         alt={item.alt || "Image"}
@@ -153,7 +154,7 @@ const Galerie = () => {
                       />
                     </div>
                   ) : item.type === 'video' ? (
-                    <div className="w-full h-full bg-gray-100 relative">
+                    <div className="w-full h-full bg-gray-100 dark:bg-gray-800 relative">
                       {/* Video element for auto-thumbnail generation */}
                       <div className="w-full h-full">
                         <video 
@@ -182,8 +183,8 @@ const Galerie = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-purple/20 to-lightblue/30 flex items-center justify-center">
-                      <div className="p-6 rounded-full bg-white/80 flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-purple/20 to-lightblue/30 dark:from-purple/40 dark:to-lightblue/30 flex items-center justify-center">
+                      <div className="p-6 rounded-full bg-white/80 dark:bg-gray-800/80 flex items-center justify-center">
                         <Music className="w-12 h-12 text-purple" />
                       </div>
                     </div>
@@ -193,10 +194,10 @@ const Galerie = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-lg text-gray-500 select-none">Vyberte album pro zobrazení fotografií a videí.</p>
+              <p className="text-lg text-gray-500 dark:text-gray-400 select-none">Vyberte album pro zobrazení fotografií a videí.</p>
               <Button 
                 onClick={() => setIsAlbumSelectorOpen(true)}
-                className="mt-4 rounded-full"
+                className="mt-4 rounded-full dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                 variant="outline"
               >
                 Vybrat album
@@ -206,7 +207,7 @@ const Galerie = () => {
           
           {currentMediaItems.length === 0 && selectedAlbum && (
             <div className="text-center py-12">
-              <p className="text-lg text-gray-500 select-none">V tomto albu zatím nejsou žádné vzpomínky 😭.</p>
+              <p className="text-lg text-gray-500 dark:text-gray-400 select-none">V tomto albu zatím nejsou žádné vzpomínky 😭.</p>
             </div>
           )}
         </div>

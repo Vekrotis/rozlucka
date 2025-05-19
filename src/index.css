@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -68,7 +69,7 @@
     --input: 240 3.7% 15.9%;
     --ring: 346 100% 92%;
   }
- 
+  
   * {
     @apply border-border;
   }
@@ -189,7 +190,7 @@
   }
   
   .highlight {
-    @apply bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-100 px-1 py-0.5 rounded;
+    @apply bg-yellow-100 dark:bg-yellow-900 dark:text-yellow-100 px-1 py-0.5 rounded;
   }
 }
 
@@ -232,4 +233,20 @@
 
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Fix for the downward arrow on mobile */
+@media (max-width: 768px) {
+  .arrow-down {
+    width: 30px !important;
+    height: 30px !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    bottom: 5px !important;
+  }
+}
+
+/* Center align all text on the Pozvanka page */
+.pozvanka-page * {
+  text-align: center;
 }

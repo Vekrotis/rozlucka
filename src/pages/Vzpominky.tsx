@@ -79,7 +79,7 @@ const Vzpominky = () => {
             <h2 className="text-xl font-semibold mb-4 dark:text-white">Nejlepší vzpomínky</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {bestMemories.map((item, idx) => (
-                <div key={idx} className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div key={idx} className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:bg-gray-800/80 transition-all">
                   <p className="italic text-gray-600 dark:text-gray-300 mb-4">
                     "{item.text}"
                   </p>
@@ -110,7 +110,7 @@ const Vzpominky = () => {
             <h2 className="text-xl font-semibold mb-4 dark:text-white">Vzkazy od učitelů</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {teacherMessages.map((item, idx) => (
-                <div key={idx} className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div key={idx} className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:bg-gray-800/80 transition-all">
                   <p className="italic text-gray-600 dark:text-gray-300 mb-4">
                     "{item.text}"
                   </p>

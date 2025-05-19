@@ -29,7 +29,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
             <div className={`absolute left-5 md:left-1/2 top-5 transform -translate-x-2.5 md:-translate-x-3 w-5 h-5 rounded-full border-2 z-10 ${
               item.highlight 
                 ? 'bg-mandarin border-mandarin' 
-                : 'bg-white border-peach'
+                : 'bg-white dark:bg-gray-800 border-peach'
             }`}>
             </div>
             
@@ -38,7 +38,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
               index % 2 === 0 ? 'md:text-right' : ''
             }`}>
               {/* Time */}
-              <div className={`text-lg font-bold text-gray-700 mb-1 md:mb-0 ${
+              <div className={`text-lg font-bold text-gray-700 dark:text-gray-300 mb-1 md:mb-0 ${
                 index % 2 === 0 
                   ? 'md:col-start-1' 
                   : 'md:col-start-2'
@@ -56,8 +56,8 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   ? 'border-l-4 border-mandarin shadow-lg' 
                   : ''
               }`}>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+                <h3 className="text-xl font-semibold mb-2 dark:text-white">{item.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
               </div>
             </div>
           </div>

@@ -55,7 +55,7 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
               <div
                 key={album.id}
                 onClick={() => onSelect(album.id)}
-                className="p-3 rounded-xl bg-white dark:bg-gray-800 dark:border-gray-700 border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                className="p-3 rounded-xl bg-white dark:bg-gray-800 dark:hover:bg-gray-700/90 dark:border-gray-700 border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="aspect-video rounded-lg bg-gray-100 dark:bg-gray-700 overflow-hidden mb-2">
                   {album.coverImage ? (
