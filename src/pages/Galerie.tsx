@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import AlbumSelector, { Album } from '@/components/gallery/AlbumSelector';

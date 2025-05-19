@@ -11,7 +11,7 @@ const Index = () => {
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
   const [quote] = useState<string>('„Není důležité, kolik jsme toho stihli probrat, ale kolik jsme si z toho odnesli. Není důležité, kolikrát jsme zaspali, ale že jsme vždycky nějak přišli. Není důležité, kolik bylo testů, ale kolik z nich jsme přežili."');
-  const [author] = useState<string>("— ChatGPT");
+  const [author] = useState<string>("— 9.B");
 
   useEffect(() => {
     setShowAnimation(true);

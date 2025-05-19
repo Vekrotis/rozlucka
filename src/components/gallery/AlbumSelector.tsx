@@ -33,18 +33,18 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="album-selector-dialog bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm border border-white/30 dark:border-white/10 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl max-h-[80vh]">
+      <DialogContent className="album-selector-dialog bg-white/35 dark:bg-gray-900/70 backdrop-blur-sm border border-white/30 dark:border-white/10 p-6 max-w-lg mx-auto md:rounded-xl rounded-2xl max-h-[80vh]">
         <button 
           onClick={onClose}
-          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
+          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-300/20 dark:hover:bg-gray-800 transition-colors z-10"
           aria-label="Zavřít"
         >
-          <CloseIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+          <CloseIcon className="h-5 w-5 text-gray-200 dark:text-gray-400" />
         </button>
         
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold dark:text-white">Vyberte album</DialogTitle>
-          <DialogDescription className="dark:text-gray-300">
+          <DialogDescription className="dark:text-gray-300 text-gray-900">
             Prohlédněte si vzpomínky podle kategorií
           </DialogDescription>
         </DialogHeader>
@@ -55,9 +55,9 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
               <div
           key={album.id}
           onClick={() => onSelect(album.id)}
-          className="p-3 rounded-xl bg-white/80 dark:bg-gray-800/80 dark:hover:bg-gray-700/80 dark:border-gray-700 border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer"
+          className="p-3 rounded-xl bg-white/40 dark:bg-gray-800/40 dark:hover:bg-gray-700/20 dark:border-gray-700 border border-gray-300 shadow-sm hover:shadow-md transition-all cursor-pointer"
               >
-          <div className="aspect-video rounded-lg bg-gray-100/80 dark:bg-gray-700/80 overflow-hidden mb-2">
+          <div className="aspect-video rounded-lg bg-white/40 dark:bg-gray-700/70 overflow-hidden mb-2">
             {album.coverImage ? (
               <img 
                 src={album.coverImage} 
@@ -73,7 +73,7 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
             )}
           </div>
           <h3 className="font-medium text-gray-800 dark:text-gray-200">{album.title}</h3>
-          <p className="text-xs text-gray-500 dark:text-gray-400">{album.count} položek</p>
+          <p className="text-xs text-gray-700 dark:text-gray-400">{album.count} položek</p>
               </div>
             ))}
           </div>

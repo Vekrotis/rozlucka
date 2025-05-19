@@ -6,52 +6,52 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 const bestMemories = [
   {
     text: 'Nikdy nezapomenu na školní výlet do Parlamentu, kdy jsme nestihli bus do Plzně a nakonec si užili den ve Varech.',
-    name: 'Tomáš Novák',
+    name: 'Natalie Khailová',
     image: 'zaci/Untitled6.png',
   },
   {
-    text: 'Nejlepší byla naše vánoční besídka, kde jsme zpívali koledy a smáli se až do večera.',
-    name: 'Anna Dvořáková',
+    text: 'Nejlepší byla naše vánoční besídka, kde jsme zpívali koledy a Šímu odvedli kvůli mně.',
+    name: 'David Vreštiak',
   },
   {
     text: 'Vzpomínám na sportovní den, kdy jsme vyhráli štafetu a slavili s celou třídou.',
-    name: 'Martin Svoboda',
+    name: 'Aleš Břečka',
   },
   {
     text: 'Společné projekty v informatice mě naučily spolupracovat a pomáhat ostatním.',
-    name: 'Lucie Králová',
+    name: 'Laura Patočková',
   },
   {
-    text: 'Školní akademie byla nezapomenutelná, protože jsme všichni vystupovali na pódiu.',
-    name: 'Petr Beneš',
+    text: 'Dabeři ve škole byli cool.',
+    name: 'Anna Vokatá',
   },
   {
     text: 'Nejvíc mě bavily hodiny výtvarné výchovy, kde jsme mohli tvořit podle vlastní fantazie.',
-    name: 'Eliška Horáková',
+    name: 'Anna Vokatá',
   },
 ];
 
 const teacherMessages = [
   {
     text: 'Bylo mi ctí učit vás. Přeji vám mnoho úspěchů do budoucna a věřím, že využijete všechny získané vědomosti a zkušenosti.',
-    name: 'Mgr. Jana Malá',
+    name: 'Mgr. Nikola Matouškoová',
     desc: 'Učitelka matematiky v 6. - 8. třídě',
     image: 'ucitele/Untitled11.png',
   },
   {
     text: 'Vaše třída byla vždy plná energie a nápadů. Děkuji za krásné roky.',
-    name: 'Mgr. Petr Černý',
-    desc: 'Třídní učitel v 9. třídě',
+    name: 'Mgr. Martin Fous',
+    desc: 'Učitel matematiky',
   },
   {
     text: 'Přeji vám, ať si uchováte radost z objevování a nikdy se nebojíte ptát.',
-    name: 'Mgr. Eva Novotná',
-    desc: 'Učitelka přírodopisu',
+    name: 'Mgr. Jiří Kollarov',
+    desc: 'Učitel přírodopisu',
   },
   {
     text: 'Bylo radostí sledovat, jak rostete a zrajete. Hodně štěstí na další cestě!',
-    name: 'Mgr. Karel Svoboda',
-    desc: 'Učitel dějepisu',
+    name: 'Mgr. Frýdlová Michaela',
+    desc: 'Učitelka angličtiny',
   },
 ];
 
