@@ -66,6 +66,11 @@ export default {
 				// Custom colors for 9.B graduation
 				pink: "#FFD6DE",
 				peach: "#FF9D7D",
+				lightpink: "#FFB2C6",
+				lightpeach: "#FFB47D",
+				lightgreen: "#B2FFB2",
+				lightyellow: "#FFF9B2",
+				lightpurple: "#D6B2FF",
 				mandarin: "#FFB347",
 				yellow: {
 					50: "#FFFDF2",

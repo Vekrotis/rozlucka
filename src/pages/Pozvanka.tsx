@@ -23,8 +23,8 @@ function useGenderGradient(): string {
   const [searchParams] = useSearchParams();
   const gender = (searchParams.get('typ') || '').toLowerCase();
   if (gender === 'muz' || gender === 'muž') return 'from-blue-500 via-blue-400 to-lightblue';
-  if (gender === 'zena' || gender === 'žena') return 'from-pink via-pink-500 to-pink-400';
-  return 'from-yellow-400 via-yellow-300 to-yellow-200'; // Neutral default
+  if (gender === 'zena' || gender === 'žena') return 'from-lightpurple to-lightpink';
+  return 'from-yellow-400 via-yellow-300 to-yellow-200';
 }
 
 const Pozvanka = () => {
