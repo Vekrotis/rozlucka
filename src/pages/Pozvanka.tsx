@@ -21,8 +21,8 @@ function useCapitalizedSearchParam(param: string, fallback: string): string {
 function useGenderGradient(): string {
   const [searchParams] = useSearchParams();
   const gender = (searchParams.get('typ') || '').toLowerCase();
-  if (gender === 'muz') return 'from-blue-500 to-blue-300';
-    if (gender === 'zena') return 'from-pink to-pink-600';
+  if (gender === 'muz' || gender === 'muž') return 'from-blue-500 to-blue-300';
+  if (gender === 'zena' || gender === 'žena') return 'from-pink to-pink-600';
   return 'from-yellow-400 to-yellow-200';
 }
 
