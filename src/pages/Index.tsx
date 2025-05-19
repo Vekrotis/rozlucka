@@ -48,7 +48,7 @@ const Index = () => {
         <div className={`max-w-2xl my-8 opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`} style={{
         animationDelay: '0.6s'
       }}>
-          <blockquote className="text-lg md:text-xl text-gray-200 italic font-light\n">
+          <blockquote className="text-lg md:text-xl text-gray-700 italic font-light\\n">
             {quote}
             <footer className="mt-2 text-right text-sm font-medium">{author}</footer>
           </blockquote>
