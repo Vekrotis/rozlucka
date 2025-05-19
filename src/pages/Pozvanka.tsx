@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import AppLayout from '@/components/layout/AppLayout';
 import GradientButton from '@/components/ui/GradientButton';
@@ -8,7 +7,7 @@ import { generateInvitationPDF } from '@/utils/pdf-generator';
 import { useToast } from '@/hooks/use-toast';
 
 function capitalizeCzechWords(str: string): string {
-  return str.replace(/(^|\s)([a-záčďéěíňóřšťúůýž])/giu, (match, p1, p2) => {
+  return str.replace(/(^|\s)([a-záčďéěíňóřšťúůýž])/giu, (_match, p1, p2) => {
     return p1 + p2.toLocaleUpperCase('cs-CZ');
   });
 }
@@ -19,8 +18,17 @@ function useCapitalizedSearchParam(param: string, fallback: string): string {
   return capitalizeCzechWords(value);
 }
 
+function useGenderGradient(): string {
+  const [searchParams] = useSearchParams();
+  const gender = (searchParams.get('typ') || '').toLowerCase();
+  if (gender === 'muz') return 'from-blue-500 to-blue-300';
+    if (gender === 'zena') return 'from-pink to-pink-600';
+  return 'from-yellow-400 to-yellow-200';
+}
+
 const Pozvanka = () => {
   const jmeno = useCapitalizedSearchParam('jmeno', 'Vážený hoste');
+  const nameGradient = useGenderGradient();
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState<boolean>(false);
@@ -29,21 +37,17 @@ const Pozvanka = () => {
   
   useEffect(() => {
     setShowAnimation(true);
-    
     const timer = setTimeout(() => {
       setShowConfetti(false);
     }, 10000);
-    
     return () => clearTimeout(timer);
   }, []);
 
   const handleDownloadPDF = async () => {
     if (!invitationRef.current) return;
-    
     setIsGeneratingPdf(true);
     try {
       const success = await generateInvitationPDF('invitation-content', `pozvanka-${jmeno.replace(/\s+/g, '-').toLowerCase()}.pdf`);
-      
       if (success) {
         toast({
           title: "Pozvánka stažena",
@@ -74,7 +78,6 @@ const Pozvanka = () => {
   return (
     <AppLayout>
       <ConfettiEffect active={showConfetti} duration={10000} />
-      
       <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-4 relative py-8">
         <div
           id="invitation-content"
@@ -86,16 +89,15 @@ const Pozvanka = () => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             Osobní pozvánka pro
           </h1>
-          
-          <p className="text-3xl md:text-3xl font-caveat font-bold my-6 py-2 px-4 from-orange-500 to-mandarin bg-gradient-to-r text-transparent bg-clip-text">
+          <p
+            className={`text-3xl md:text-3xl font-caveat font-bold my-6 py-2 px-4 bg-gradient-to-r text-transparent bg-clip-text ${nameGradient}`}
+          >
             {jmeno}
           </p>
-          
           <p className="text-lg mb-8">
             Dovolujeme si Vás pozvat na slavnostní rozloučení třídy 9.B se základní školou, 
             které se uskuteční dne <strong>12. Března 2044</strong> v prostorách školy.
           </p>
-          
           {/* Info icons for PDF export */}
           <div className="flex justify-center gap-8 my-6">
             <div className="flex flex-col items-center">
@@ -107,7 +109,6 @@ const Pozvanka = () => {
               </div>
               <p className="text-sm font-medium">Kulturní Dům, Ostrov</p>
             </div>
-            
             <div className="flex flex-col items-center">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple to-lightblue flex items-center justify-center text-white mb-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +118,6 @@ const Pozvanka = () => {
               <p className="text-sm font-medium">12. Března 2044, 17:00</p>
             </div>
           </div>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 pdf-hide">
             <GradientButton to="/program" size="lg" variant="primary">
               Program dne
@@ -127,7 +127,6 @@ const Pozvanka = () => {
             </GradientButton>
           </div>
         </div>
-
         <div className={`mt-8 opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.9s' }}>
           <GradientButton 
             onClick={handleDownloadPDF} 
