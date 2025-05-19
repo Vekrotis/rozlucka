@@ -28,8 +28,7 @@ const Index = () => {
         localStorage.setItem('firstVisit', 'false');
       }, 1000);
     }
-    
-    // Disable confetti after 5 seconds
+
     const timer = setTimeout(() => {
       setShowConfetti(false);
     }, 10000);

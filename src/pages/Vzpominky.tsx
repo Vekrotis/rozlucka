@@ -35,7 +35,7 @@ const teacherMessages = [
     text: 'Bylo mi ctí učit vás. Přeji vám mnoho úspěchů do budoucna a věřím, že využijete všechny získané vědomosti a zkušenosti.',
     name: 'Mgr. Jana Malá',
     desc: 'Učitelka matematiky v 6. - 8. třídě',
-    image: '/profiles/teacher1.jpg',
+    image: 'ucitele/Untitled11.png',
   },
   {
     text: 'Vaše třída byla vždy plná energie a nápadů. Děkuji za krásné roky.',

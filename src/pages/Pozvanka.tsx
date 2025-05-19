@@ -7,9 +7,20 @@ import ConfettiEffect from '@/components/effects/ConfettiEffect';
 import { generateInvitationPDF } from '@/utils/pdf-generator';
 import { useToast } from '@/hooks/use-toast';
 
-const Pozvanka = () => {
+function capitalizeCzechWords(str: string): string {
+  return str.replace(/(^|\s)([a-záčďéěíňóřšťúůýž])/giu, (match, p1, p2) => {
+    return p1 + p2.toLocaleUpperCase('cs-CZ');
+  });
+}
+
+function useCapitalizedSearchParam(param: string, fallback: string): string {
   const [searchParams] = useSearchParams();
-  const jmeno = searchParams.get('jmeno') || 'Vážený hoste';
+  const value = searchParams.get(param) || fallback;
+  return capitalizeCzechWords(value);
+}
+
+const Pozvanka = () => {
+  const jmeno = useCapitalizedSearchParam('jmeno', 'Vážený hoste');
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState<boolean>(false);
@@ -19,7 +30,6 @@ const Pozvanka = () => {
   useEffect(() => {
     setShowAnimation(true);
     
-    // Disable confetti after 5 seconds
     const timer = setTimeout(() => {
       setShowConfetti(false);
     }, 10000);
@@ -77,7 +87,7 @@ const Pozvanka = () => {
             Osobní pozvánka pro
           </h1>
           
-          <p className="text-2xl md:text-3xl font-caveat font-bold my-6 py-2 px-4">
+          <p className="text-3xl md:text-3xl font-caveat font-bold my-6 py-2 px-4 from-orange-500 to-mandarin bg-gradient-to-r text-transparent bg-clip-text">
             {jmeno}
           </p>
           

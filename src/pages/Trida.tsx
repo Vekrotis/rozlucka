@@ -5,7 +5,7 @@ import { sub } from 'date-fns';
 
 const teacherProfiles = [
   { id: 0, name: 'Mgr. Martin Fous', subject: 'Ředitel, učitel Matematiky a INF' },
-  { id: 1, name: 'Mgr. Jaroslava Piherová', subject: 'Třídní učitelka a učitelka Angličtiny', image: '/profiles/teacher1.jpg' },
+  { id: 1, name: 'Mgr. Jaroslava Piherová', subject: 'Třídní učitelka a učitelka Angličtiny', image: 'ucitele/Untitled11.png' },
   { id: 2, name: 'Mgr. Kateřina Macurová', subject: 'Předchozí třídní učitelka', image: '/profiles/teacher2.jpg' },
   { id: 3, name: 'Mgr. Zapomnel Jmeno', subject: 'Třídní učitelka 1. stupně' },
   { id: 4, name: 'Viktorie Bendová', subject: 'Asistentka' },
@@ -23,7 +23,7 @@ const teacherProfiles = [
 ];
 
 const studentProfiles = [
-  { id: 1, name: 'Matouš Appeltauer', image: '/profiles/Matous_Appeltauer.jpg' },
+  { id: 1, name: 'Matouš Appeltauer', image: 'zaci/Untitled6.png' },
   { id: 2, name: 'Jakub Bečka' },
   { id: 3, name: 'Yassine Ben Salem' },
   { id: 4, name: 'Lukas Benda' },
