@@ -109,7 +109,7 @@ const Galerie = () => {
             <span className="gradient-text">Galerie</span> vzpomínek
           </h1>
           
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 select-none">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 ">
             Projděte si fotografie a vzpomínky na naši společnou cestu základní školou. 
             Zde najdete nejdůležitější momenty z našich devíti let.
           </p>
