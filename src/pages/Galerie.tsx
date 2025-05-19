@@ -114,7 +114,7 @@ const Galerie = () => {
             Zde najdete nejdůležitější momenty z našich devíti let.
           </p>
           
-          <div className="glass rounded-2xl p-6 mb-10">
+          <div className="glass rounded-2xl p-6 mb-10 bg-white/70 dark:bg-gray-900/60">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-xl font-semibold select-none dark:text-white">
                 {selectedAlbum 
