@@ -24,11 +24,11 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
   '1': [
     { id: '101', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'První školní den', description: 'První školní den - září 2016' },
     { id: '102', type: 'video', src: '/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
-    { id: '103', type: 'video', src: '/Screen Recording 2025-05-12 at 8.38.55 PM2.remuxed.mov', description: 'Video z první besídky' },
+    { id: '103', type: 'video', src: '/vid/05-06-2022_121051.mp4', description: 'Video z první besídky' },
   ],
   '3': [
     { id: '301', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
-    { id: '302', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Táborák' },
+    { id: '302', type: 'video', src: 'vid/Screen Recording 2025-05-12-01.mp4', description: 'Táborák' },
     { id: '303', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
   ],
   '4': [
@@ -60,7 +60,7 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
     { id: '902', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Příroda', description: 'Výlet do CHKO' },
   ],
   '10': [
-    { id: '1001', type: 'audio', src: '/05-06-2022_121051.mp4', description: 'Školní hymna' },
+    { id: '1001', type: 'audio', src: 'aud/Ondrovo Hodinky.mp3', description: 'Školní hymna' },
     { id: '1002', type: 'audio', src: '/05-06-2022_121051.mp4', description: 'Sborový zpěv 6. třída' },
     { id: '1003', type: 'audio', src: '/05-06-2022_121051.mp4', description: 'Absolventská píseň' },
   ],
