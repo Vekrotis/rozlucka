@@ -26,11 +26,6 @@ const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
     { id: '102', type: 'video', src: '/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
     { id: '103', type: 'video', src: '/vid/05-06-2022_121051.mp4', description: 'Video z první besídky' },
   ],
-  '3': [
-    { id: '301', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Škola v přírodě', description: 'Škola v přírodě - 2019' },
-    { id: '302', type: 'video', src: 'vid/Screen Recording 2025-05-12-01.mp4', description: 'Táborák' },
-    { id: '303', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Les', description: 'Výlet do lesa' },
-  ],
   '4': [
     { id: '401', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: '9. třída', description: 'Poslední školní rok - 2025' },
     { id: '402', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Kamarádi', description: 'Přátelé na celý život' },

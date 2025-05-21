@@ -34,7 +34,7 @@ const BottomNav: React.FC = () => {
           <Link 
             to="/" 
             className={`flex items-center justify-center w-12 h-12 rounded-full mx-2 ${
-              isActive('/') ? 'bg-pink text-white shadow-md' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+              isActive('/') ? 'bg-green-400/70 text-white shadow-md' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
             } transition-colors`}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

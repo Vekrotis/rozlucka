@@ -101,8 +101,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-white">Program rozlučky</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Podívejte se, co jsme pro vás připravili. Přehledný harmonogram celého dne 
-                s popisem jednotlivých aktivit.
+Podívejte se, co jsme pro vás připravili. Přehledný harmonogram celého dne s popisem jednotlivých aktivit.
               </p>
               <GradientButton to="/program" size="sm">
                 Zobrazit program
