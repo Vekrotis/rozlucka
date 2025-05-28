@@ -134,7 +134,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
       <DialogContent className="max-w-6xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white md:rounded-xl rounded-2xl overflow-hidden">
         <DialogTitle className="sr-only">Prohlížeč médií</DialogTitle>
         <div className="relative w-full h-full flex flex-col">
-          {/* Close button - improved positioning for desktop */}
+          {/* Close button */}
           <button 
             onClick={onClose}
             className="absolute top-4 right-4 z-20 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-sm"
@@ -150,7 +150,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
           
           {/* Media container with touch events */}
           <div 
-            className="flex-grow flex items-center justify-center relative overflow-auto"
+            className="flex-grow flex items-center justify-center relative overflow-hidden"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -164,7 +164,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             
             {currentItem.type === 'image' ? (
               <div 
-                className="relative w-full h-full flex items-center justify-center overflow-auto media-viewer-image-container"
+                className="relative w-full h-full flex items-center justify-center p-4 md:p-8"
                 style={{ 
                   cursor: zoomLevel > 1 ? 'move' : 'default'
                 }}
@@ -172,7 +172,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 <img
                   src={currentItem.src}
                   alt={currentItem.alt || "Image"}
-                  className="media-viewer-image transition-transform duration-200 max-h-full max-w-full object-contain"
+                  className="transition-transform duration-200 max-h-full max-w-full object-contain md:max-h-[70vh] md:max-w-[80vw]"
                   style={{ 
                     transform: `scale(${zoomLevel})`,
                     transformOrigin: 'center',
@@ -185,7 +185,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 src={currentItem.src}
                 controls
                 autoPlay
-                className="max-h-full max-w-full"
+                className="max-h-full max-w-full md:max-h-[70vh] md:max-w-[80vw]"
                 onLoadedData={handleImageLoad}
                 poster={currentItem.thumbnail || `${currentItem.src}#t=0.5`}
               />
@@ -206,10 +206,10 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </div>
             )}
             
-            {/* Navigation buttons - improved styling and positioning */}
+            {/* Navigation buttons - hidden on mobile */}
             <button 
               onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110 hidden md:block"
               aria-label="Previous"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -219,7 +219,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             
             <button 
               onClick={(e) => { e.stopPropagation(); handleNext(); }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110 hidden md:block"
               aria-label="Next"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -227,7 +227,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </svg>
             </button>
             
-            {/* Zoom controls (only for images) - improved positioning */}
+            {/* Zoom controls (only for images) */}
             {currentItem.type === 'image' && (
               <div className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
                 <button 
@@ -262,7 +262,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </div>
             )}
 
-            {/* Swipe indicator for mobile - subtle visual hint */}
+            {/* Swipe indicator for mobile */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 md:hidden">
               <div className="flex items-center gap-2 text-white/60 text-xs bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -276,7 +276,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             </div>
           </div>
           
-          {/* Caption/description - improved styling */}
+          {/* Caption/description */}
           {currentItem.description && (
             <div className="p-4 bg-black/80 backdrop-blur-sm text-center border-t border-white/10">
               <p className="text-sm text-white/90">{currentItem.description}</p>
