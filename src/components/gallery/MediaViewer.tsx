@@ -33,7 +33,13 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const currentItem = mediaItems[currentIndex];
+
+  // Minimum distance for swipe detection
+  const minSwipeDistance = 50;
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,14 +47,39 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     setZoomLevel(1);
   }, [currentIndex]);
 
-  const handlePrevious = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          handlePrevious();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          handleNext();
+          break;
+        case 'Escape':
+          event.preventDefault();
+          onClose();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, currentIndex, mediaItems.length]);
+
+  const handlePrevious = () => {
     const newIndex = currentIndex > 0 ? currentIndex - 1 : mediaItems.length - 1;
     onIndexChange(newIndex);
   };
 
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleNext = () => {
     const newIndex = currentIndex < mediaItems.length - 1 ? currentIndex + 1 : 0;
     onIndexChange(newIndex);
   };
@@ -72,24 +103,59 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     setZoomLevel(1);
   };
 
+  // Touch event handlers for swipe gestures
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrevious();
+    }
+  };
+
   if (!currentItem) return null;
   
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white md:rounded-xl rounded-2xl overflow-hidden">
+      <DialogContent className="max-w-6xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white md:rounded-xl rounded-2xl overflow-hidden">
         <DialogTitle className="sr-only">Prohlížeč médií</DialogTitle>
         <div className="relative w-full h-full flex flex-col">
-          {/* Close button */}
+          {/* Close button - improved positioning for desktop */}
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+            className="absolute top-4 right-4 z-20 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-sm"
             aria-label="Zavřít"
           >
             <CloseIcon className="w-6 h-6" />
           </button>
           
-          {/* Media container */}
-          <div className="flex-grow flex items-center justify-center relative overflow-auto">
+          {/* Media counter - desktop only */}
+          <div className="absolute top-4 left-4 z-20 hidden md:block bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+            {currentIndex + 1} / {mediaItems.length}
+          </div>
+          
+          {/* Media container with touch events */}
+          <div 
+            className="flex-grow flex items-center justify-center relative overflow-auto"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            ref={contentRef}
+          >
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-10 h-10 border-4 border-t-purple border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
@@ -106,7 +172,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 <img
                   src={currentItem.src}
                   alt={currentItem.alt || "Image"}
-                  className="media-viewer-image transition-transform duration-200"
+                  className="media-viewer-image transition-transform duration-200 max-h-full max-w-full object-contain"
                   style={{ 
                     transform: `scale(${zoomLevel})`,
                     transformOrigin: 'center',
@@ -140,10 +206,10 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </div>
             )}
             
-            {/* Navigation buttons */}
+            {/* Navigation buttons - improved styling and positioning */}
             <button 
-              onClick={handlePrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+              onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
               aria-label="Previous"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -152,8 +218,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             </button>
             
             <button 
-              onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+              onClick={(e) => { e.stopPropagation(); handleNext(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
               aria-label="Next"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -161,13 +227,13 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </svg>
             </button>
             
-            {/* Zoom controls (only for images) */}
+            {/* Zoom controls (only for images) - improved positioning */}
             {currentItem.type === 'image' && (
-              <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 flex gap-2 bg-black/40 rounded-full p-1">
+              <div className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
                 <button 
                   onClick={handleZoomOut}
                   disabled={zoomLevel <= 1}
-                  className="p-2 rounded-full hover:bg-black/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-full hover:bg-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-110"
                   aria-label="Oddálit"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -176,7 +242,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 </button>
                 <button 
                   onClick={handleReset}
-                  className="p-2 rounded-full hover:bg-black/30 transition-colors"
+                  className="p-2 rounded-full hover:bg-black/40 transition-all hover:scale-110"
                   aria-label="Resetovat zoom"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -186,7 +252,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 <button 
                   onClick={handleZoomIn}
                   disabled={zoomLevel >= 3}
-                  className="p-2 rounded-full hover:bg-black/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-full hover:bg-black/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-110"
                   aria-label="Přiblížit"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -195,12 +261,25 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 </button>
               </div>
             )}
+
+            {/* Swipe indicator for mobile - subtle visual hint */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 md:hidden">
+              <div className="flex items-center gap-2 text-white/60 text-xs bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+                </svg>
+                <span>Swipe</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </div>
+            </div>
           </div>
           
-          {/* Caption/description */}
+          {/* Caption/description - improved styling */}
           {currentItem.description && (
-            <div className="p-4 bg-black/70 text-center">
-              <p className="text-sm">{currentItem.description}</p>
+            <div className="p-4 bg-black/80 backdrop-blur-sm text-center border-t border-white/10">
+              <p className="text-sm text-white/90">{currentItem.description}</p>
             </div>
           )}
         </div>
