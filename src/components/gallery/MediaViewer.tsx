@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { X as CloseIcon } from 'lucide-react';
+import { X as CloseIcon, Maximize2, Minimize2 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 export type MediaItem = {
@@ -38,7 +38,12 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [panPosition, setPanPosition] = useState({ x: 0, y: 0 });
+  const [isPanning, setIsPanning] = useState(false);
+  const [lastPanPosition, setLastPanPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
   const currentItem = mediaItems[currentIndex];
   const isMobile = useIsMobile();
 
@@ -47,9 +52,11 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
 
   useEffect(() => {
     setIsLoading(true);
-    // Reset zoom level when changing media
+    // Reset zoom level and pan position when changing media
     setZoomLevel(1);
+    setPanPosition({ x: 0, y: 0 });
     setSwipeOffset(0);
+    setIsFullscreen(false);
   }, [currentIndex]);
 
   // Keyboard navigation
@@ -68,7 +75,11 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
           break;
         case 'Escape':
           event.preventDefault();
-          onClose();
+          if (isFullscreen) {
+            setIsFullscreen(false);
+          } else {
+            onClose();
+          }
           break;
       }
     };
@@ -77,14 +88,14 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, currentIndex, mediaItems.length]);
+  }, [isOpen, currentIndex, mediaItems.length, isFullscreen]);
 
   const handlePrevious = () => {
     if (isTransitioning) return;
     const newIndex = currentIndex > 0 ? currentIndex - 1 : mediaItems.length - 1;
     setIsTransitioning(true);
     onIndexChange(newIndex);
-    setTimeout(() => setIsTransitioning(false), 300);
+    setTimeout(() => setIsTransitioning(false), 150);
   };
 
   const handleNext = () => {
@@ -92,7 +103,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     const newIndex = currentIndex < mediaItems.length - 1 ? currentIndex + 1 : 0;
     setIsTransitioning(true);
     onIndexChange(newIndex);
-    setTimeout(() => setIsTransitioning(false), 300);
+    setTimeout(() => setIsTransitioning(false), 150);
   };
 
   const handleImageLoad = () => {
@@ -106,29 +117,68 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
 
   const handleZoomOut = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setZoomLevel(prev => Math.max(prev - 0.25, 1));
+    const newZoomLevel = Math.max(zoomLevel - 0.25, 1);
+    setZoomLevel(newZoomLevel);
+    if (newZoomLevel === 1) {
+      setPanPosition({ x: 0, y: 0 });
+    }
   };
   
   const handleReset = (e: React.MouseEvent) => {
     e.stopPropagation();
     setZoomLevel(1);
+    setPanPosition({ x: 0, y: 0 });
+  };
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  // Mouse events for panning when zoomed (desktop only)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!isMobile && zoomLevel > 1) {
+      e.preventDefault();
+      setIsPanning(true);
+      setLastPanPosition({ x: e.clientX, y: e.clientY });
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMobile && isPanning && zoomLevel > 1) {
+      e.preventDefault();
+      const deltaX = e.clientX - lastPanPosition.x;
+      const deltaY = e.clientY - lastPanPosition.y;
+      
+      setPanPosition(prev => ({
+        x: prev.x + deltaX,
+        y: prev.y + deltaY
+      }));
+      
+      setLastPanPosition({ x: e.clientX, y: e.clientY });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsPanning(false);
   };
 
   // Touch event handlers for swipe gestures with smooth animation
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-    setSwipeOffset(0);
+    if (!isFullscreen) {
+      setTouchEnd(null);
+      setTouchStart(e.targetTouches[0].clientX);
+      setSwipeOffset(0);
+    }
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    if (!touchStart) return;
+    if (!touchStart || isFullscreen) return;
     
     const currentTouch = e.targetTouches[0].clientX;
     const diff = currentTouch - touchStart;
     
     // Limit swipe distance to prevent over-swiping
-    const maxOffset = window.innerWidth * 0.3;
+    const maxOffset = window.innerWidth * 0.2;
     const limitedOffset = Math.max(-maxOffset, Math.min(maxOffset, diff));
     
     setSwipeOffset(limitedOffset);
@@ -136,7 +186,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) {
+    if (!touchStart || !touchEnd || isFullscreen) {
       setSwipeOffset(0);
       return;
     }
@@ -159,30 +209,32 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
   
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl w-[95vw] h-[90vh] p-0 bg-black/90 border-none text-white md:rounded-xl rounded-2xl overflow-hidden">
+      <DialogContent className={`${isFullscreen && isMobile ? 'fixed inset-0 max-w-none w-screen h-screen' : 'max-w-6xl w-[95vw] h-[90vh]'} p-0 bg-black/95 border-none text-white md:rounded-xl rounded-2xl overflow-hidden`}>
         <DialogTitle className="sr-only">Prohlížeč médií</DialogTitle>
         <div className="relative w-full h-full flex flex-col">
           {/* Close button */}
           <button 
-            onClick={onClose}
+            onClick={isFullscreen ? toggleFullscreen : onClose}
             className="absolute top-4 right-4 z-20 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-sm"
-            aria-label="Zavřít"
+            aria-label={isFullscreen ? "Ukončit celoobrazovkový režim" : "Zavřít"}
           >
-            <CloseIcon className="w-6 h-6" />
+            {isFullscreen ? <Minimize2 className="w-6 h-6" /> : <CloseIcon className="w-6 h-6" />}
           </button>
           
-          {/* Media counter - desktop only */}
-          {!isMobile && (
-            <div className="absolute top-4 left-4 z-20 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
-              {currentIndex + 1} / {mediaItems.length}
-            </div>
-          )}
-          
-          {/* Media counter - mobile only */}
-          {isMobile && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
-              {currentIndex + 1} / {mediaItems.length}
-            </div>
+          {/* Media counter */}
+          <div className={`absolute ${isMobile ? 'top-4 left-1/2 -translate-x-1/2' : 'top-4 left-4'} z-20 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm`}>
+            {currentIndex + 1} / {mediaItems.length}
+          </div>
+
+          {/* Fullscreen button for mobile images */}
+          {isMobile && currentItem.type === 'image' && !isFullscreen && (
+            <button 
+              onClick={toggleFullscreen}
+              className="absolute top-4 left-4 z-20 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-sm"
+              aria-label="Celá obrazovka"
+            >
+              <Maximize2 className="w-6 h-6" />
+            </button>
           )}
           
           {/* Media container with touch events */}
@@ -193,8 +245,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             onTouchEnd={onTouchEnd}
             ref={contentRef}
             style={{
-              transform: isMobile ? `translateX(${swipeOffset}px)` : 'none',
-              transition: swipeOffset === 0 && !isTransitioning ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+              transform: isMobile && !isFullscreen ? `translateX(${swipeOffset}px)` : 'none',
+              transition: swipeOffset === 0 && !isTransitioning ? 'transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none'
             }}
           >
             {isLoading && (
@@ -207,23 +259,36 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               <div 
                 className="relative w-full h-full flex items-center justify-center p-4 md:p-8"
                 style={{ 
-                  cursor: zoomLevel > 1 ? 'move' : 'default',
-                  touchAction: isMobile ? 'pan-x' : 'auto'
+                  cursor: zoomLevel > 1 && !isMobile ? 'move' : 'default',
+                  touchAction: isMobile ? (isFullscreen ? 'pinch-zoom' : 'pan-x') : 'none'
                 }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
               >
                 <img
+                  ref={imageRef}
                   src={currentItem.src}
                   alt={currentItem.alt || "Image"}
-                  className={`transition-transform duration-200 object-contain ${
-                    isMobile 
-                      ? 'max-h-full max-w-full' 
-                      : 'max-h-[70vh] max-w-[80vw]'
+                  className={`transition-transform duration-200 object-contain select-none ${
+                    isFullscreen 
+                      ? 'max-h-screen max-w-screen' 
+                      : isMobile 
+                        ? 'max-h-full max-w-full' 
+                        : 'max-h-[65vh] max-w-[70vw]'
                   }`}
                   style={{ 
-                    transform: `scale(${zoomLevel})`,
+                    transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`,
                     transformOrigin: 'center',
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    MozUserSelect: 'none',
+                    msUserSelect: 'none',
+                    pointerEvents: 'none'
                   }}
                   onLoad={handleImageLoad}
+                  onDragStart={(e) => e.preventDefault()}
                 />
               </div>
             ) : currentItem.type === 'video' ? (
@@ -232,7 +297,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                   src={currentItem.src}
                   controls
                   autoPlay
-                  className={isMobile ? 'max-h-full max-w-full' : 'h-[70vh] w-auto'}
+                  className={isMobile ? 'max-h-full max-w-full' : 'max-h-[75vh] w-auto'}
                   onLoadedData={handleImageLoad}
                   poster={currentItem.thumbnail || `${currentItem.src}#t=0.5`}
                 />
@@ -255,12 +320,12 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             )}
             
             {/* Navigation buttons - hidden on mobile */}
-            {!isMobile && (
+            {!isMobile && !isFullscreen && (
               <>
                 <button 
                   onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
-                  aria-label="Previous"
+                  aria-label="Předchozí"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
@@ -270,7 +335,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 <button 
                   onClick={(e) => { e.stopPropagation(); handleNext(); }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
-                  aria-label="Next"
+                  aria-label="Další"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
@@ -279,8 +344,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </>
             )}
             
-            {/* Zoom controls (only for images and not on mobile) */}
-            {currentItem.type === 'image' && !isMobile && (
+            {/* Zoom controls (only for images and not on mobile or fullscreen) */}
+            {currentItem.type === 'image' && !isMobile && !isFullscreen && (
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
                 <button 
                   onClick={handleZoomOut}
@@ -314,8 +379,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               </div>
             )}
 
-            {/* Swipe indicator for mobile */}
-            {isMobile && (
+            {/* Swipe indicator for mobile (not in fullscreen) */}
+            {isMobile && !isFullscreen && (
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
                 <div className="flex items-center gap-2 text-white/60 text-xs bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,8 +395,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             )}
           </div>
           
-          {/* Caption/description */}
-          {currentItem.description && (
+          {/* Caption/description - hidden in fullscreen */}
+          {currentItem.description && !isFullscreen && (
             <div className="p-4 bg-black/80 backdrop-blur-sm text-center border-t border-white/10">
               <p className="text-sm text-white/90">{currentItem.description}</p>
             </div>

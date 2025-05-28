@@ -27,6 +27,11 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.warn'],
+        passes: 2,
+      },
+      mangle: {
+        safari10: true,
       },
     },
     rollupOptions: {
@@ -39,8 +44,19 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-scroll-area',
             'lucide-react',
           ],
+          vendor: ['@tanstack/react-query'],
         },
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
+    target: 'es2015',
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
+    reportCompressedSize: false,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', '@tanstack/react-query'],
   },
 }));

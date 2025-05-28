@@ -1,6 +1,15 @@
 
 /* Put any global CSS styles here */
 
+/* Hardware acceleration for better performance */
+* {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 /* Fix for the downward arrow on mobile */
 @media (max-width: 768px) {
   .arrow-down {
@@ -75,3 +84,44 @@
   }
 }
 
+/* Performance optimizations */
+.glass {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize transitions for better performance */
+.transition-all {
+  transition-property: transform, opacity, background-color, border-color, color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Image loading optimization */
+img {
+  content-visibility: auto;
+  contain: layout style paint;
+}
+
+/* Video loading optimization */
+video {
+  content-visibility: auto;
+  contain: layout style paint;
+}
