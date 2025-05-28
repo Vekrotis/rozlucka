@@ -10,13 +10,13 @@ import { Play, Music } from 'lucide-react';
 const SAMPLE_ALBUMS: Album[] = [
   { id: '1', title: '1. třída', description: 'První kroky ve škole', count: 12, coverImage: '/20250328_085338000_iOS.jpg' },
   { id: '2', title: 'Výlety', description: 'Dobrodružství mimo školu', count: 8, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '3', title: 'Škola v přírodě', description: 'Týden plný zábavy', count: 15, coverImage: '/20250328_085338000_iOS.jpg' },
+  { id: '3', title: 'Škola v přírodě', description: 'Týden plný zábavy', count: 0, coverImage: '/20250328_085338000_iOS.jpg' },
   { id: '4', title: '9. třída', description: 'Poslední rok', count: 10, coverImage: '/20250328_085338000_iOS.jpg' },
   { id: '5', title: 'Sport', description: 'Sportovní úspěchy', count: 6, coverImage: '/20250328_085338000_iOS.jpg' },
   { id: '6', title: 'Besídky', description: 'Školní představení', count: 9, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '7', title: 'Výtvarná výchova', description: 'Naše umělecká díla', count: 7, coverImage: '/20250328_085338000_iOS.jpg' },
+  { id: '7', title: 'Výtvarná výchova', description: 'Naše umělecká díla', count: 1, coverImage: '/20250328_085338000_iOS.jpg' },
   { id: '8', title: 'Projekty', description: 'Školní projekty', count: 5, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '9', title: 'Výlety do přírody', description: 'Zážitky z přírody', count: 8, coverImage: '/20250328_085338000_iOS.jpg' },
+  { id: '9', title: 'Výlety do přírody', description: 'Zážitky z přírody', count: 2, coverImage: '/20250328_085338000_iOS.jpg' },
   { id: '10', title: 'Písničky', description: 'Naše oblíbené melodie', count: 3, coverImage: '/20250328_085338000_iOS.jpg' },
 ];
 

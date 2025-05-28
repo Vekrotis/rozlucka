@@ -64,17 +64,31 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     if (!isOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      // Only handle if focus is not on an input, textarea, or contenteditable element
+      const active = document.activeElement;
+      const isFormElement =
+        active &&
+        (
+          active.tagName === 'INPUT' ||
+          active.tagName === 'TEXTAREA' ||
+          (active as HTMLElement).isContentEditable
+        );
+      if (isFormElement) return;
+
       switch (event.key) {
         case 'ArrowLeft':
           event.preventDefault();
+          event.stopPropagation();
           handlePrevious();
           break;
         case 'ArrowRight':
           event.preventDefault();
+          event.stopPropagation();
           handleNext();
           break;
         case 'Escape':
           event.preventDefault();
+          event.stopPropagation();
           if (isFullscreen) {
             setIsFullscreen(false);
           } else {
@@ -84,9 +98,9 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown, true);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown, true);
     };
   }, [isOpen, currentIndex, mediaItems.length, isFullscreen]);
 
@@ -386,7 +400,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
                   </svg>
-                  <span>Swipe</span>
+                  <span>Posuň</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                   </svg>

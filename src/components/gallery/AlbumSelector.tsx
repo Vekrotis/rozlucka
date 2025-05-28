@@ -73,7 +73,15 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
                   )}
                 </div>
                 <h3 className="font-medium text-gray-800 dark:text-gray-200">{album.title}</h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">{album.count} položek</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">
+                  {album.count === 0
+                    ? 'žádná položka'
+                    : album.count === 1
+                    ? '1 položka'
+                    : album.count >= 2 && album.count <= 4
+                    ? `${album.count} položky`
+                    : `${album.count} položek`}
+                </p>
               </div>
             ))}
           </div>
