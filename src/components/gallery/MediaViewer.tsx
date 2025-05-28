@@ -6,6 +6,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { X as CloseIcon } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export type MediaItem = {
   id: string;
@@ -35,8 +36,11 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
   const [zoomLevel, setZoomLevel] = useState(1);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [swipeOffset, setSwipeOffset] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const currentItem = mediaItems[currentIndex];
+  const isMobile = useIsMobile();
 
   // Minimum distance for swipe detection
   const minSwipeDistance = 50;
@@ -45,6 +49,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     setIsLoading(true);
     // Reset zoom level when changing media
     setZoomLevel(1);
+    setSwipeOffset(0);
   }, [currentIndex]);
 
   // Keyboard navigation
@@ -75,13 +80,19 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
   }, [isOpen, currentIndex, mediaItems.length]);
 
   const handlePrevious = () => {
+    if (isTransitioning) return;
     const newIndex = currentIndex > 0 ? currentIndex - 1 : mediaItems.length - 1;
+    setIsTransitioning(true);
     onIndexChange(newIndex);
+    setTimeout(() => setIsTransitioning(false), 300);
   };
 
   const handleNext = () => {
+    if (isTransitioning) return;
     const newIndex = currentIndex < mediaItems.length - 1 ? currentIndex + 1 : 0;
+    setIsTransitioning(true);
     onIndexChange(newIndex);
+    setTimeout(() => setIsTransitioning(false), 300);
   };
 
   const handleImageLoad = () => {
@@ -103,22 +114,39 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
     setZoomLevel(1);
   };
 
-  // Touch event handlers for swipe gestures
+  // Touch event handlers for swipe gestures with smooth animation
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
+    setSwipeOffset(0);
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    if (!touchStart) return;
+    
+    const currentTouch = e.targetTouches[0].clientX;
+    const diff = currentTouch - touchStart;
+    
+    // Limit swipe distance to prevent over-swiping
+    const maxOffset = window.innerWidth * 0.3;
+    const limitedOffset = Math.max(-maxOffset, Math.min(maxOffset, diff));
+    
+    setSwipeOffset(limitedOffset);
+    setTouchEnd(currentTouch);
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (!touchStart || !touchEnd) {
+      setSwipeOffset(0);
+      return;
+    }
     
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
+
+    // Smooth return animation
+    setSwipeOffset(0);
 
     if (isLeftSwipe) {
       handleNext();
@@ -144,9 +172,18 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
           </button>
           
           {/* Media counter - desktop only */}
-          <div className="absolute top-4 left-4 z-20 hidden md:block bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
-            {currentIndex + 1} / {mediaItems.length}
-          </div>
+          {!isMobile && (
+            <div className="absolute top-4 left-4 z-20 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+              {currentIndex + 1} / {mediaItems.length}
+            </div>
+          )}
+          
+          {/* Media counter - mobile only */}
+          {isMobile && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+              {currentIndex + 1} / {mediaItems.length}
+            </div>
+          )}
           
           {/* Media container with touch events */}
           <div 
@@ -155,6 +192,10 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
             ref={contentRef}
+            style={{
+              transform: isMobile ? `translateX(${swipeOffset}px)` : 'none',
+              transition: swipeOffset === 0 && !isTransitioning ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+            }}
           >
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
@@ -166,13 +207,18 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
               <div 
                 className="relative w-full h-full flex items-center justify-center p-4 md:p-8"
                 style={{ 
-                  cursor: zoomLevel > 1 ? 'move' : 'default'
+                  cursor: zoomLevel > 1 ? 'move' : 'default',
+                  touchAction: isMobile ? 'pan-x' : 'auto'
                 }}
               >
                 <img
                   src={currentItem.src}
                   alt={currentItem.alt || "Image"}
-                  className="transition-transform duration-200 max-h-full max-w-full object-contain md:max-h-[70vh] md:max-w-[80vw]"
+                  className={`transition-transform duration-200 object-contain ${
+                    isMobile 
+                      ? 'max-h-full max-w-full' 
+                      : 'max-h-[70vh] max-w-[80vw]'
+                  }`}
                   style={{ 
                     transform: `scale(${zoomLevel})`,
                     transformOrigin: 'center',
@@ -181,14 +227,16 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                 />
               </div>
             ) : currentItem.type === 'video' ? (
-              <video
-                src={currentItem.src}
-                controls
-                autoPlay
-                className="max-h-full max-w-full md:max-h-[70vh] md:max-w-[80vw]"
-                onLoadedData={handleImageLoad}
-                poster={currentItem.thumbnail || `${currentItem.src}#t=0.5`}
-              />
+              <div className={`relative ${isMobile ? 'w-full h-full p-4' : 'w-auto h-auto'} flex items-center justify-center`}>
+                <video
+                  src={currentItem.src}
+                  controls
+                  autoPlay
+                  className={isMobile ? 'max-h-full max-w-full' : 'h-[70vh] w-auto'}
+                  onLoadedData={handleImageLoad}
+                  poster={currentItem.thumbnail || `${currentItem.src}#t=0.5`}
+                />
+              </div>
             ) : (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <div className="p-8 rounded-full bg-purple/30 mb-4">
@@ -207,29 +255,33 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             )}
             
             {/* Navigation buttons - hidden on mobile */}
-            <button 
-              onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110 hidden md:block"
-              aria-label="Previous"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-              </svg>
-            </button>
+            {!isMobile && (
+              <>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
+                  aria-label="Previous"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+                  </svg>
+                </button>
+                
+                <button 
+                  onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110"
+                  aria-label="Next"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </button>
+              </>
+            )}
             
-            <button 
-              onClick={(e) => { e.stopPropagation(); handleNext(); }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/40 hover:bg-black/60 transition-all backdrop-blur-sm hover:scale-110 hidden md:block"
-              aria-label="Next"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </button>
-            
-            {/* Zoom controls (only for images) */}
-            {currentItem.type === 'image' && (
-              <div className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
+            {/* Zoom controls (only for images and not on mobile) */}
+            {currentItem.type === 'image' && !isMobile && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
                 <button 
                   onClick={handleZoomOut}
                   disabled={zoomLevel <= 1}
@@ -263,17 +315,19 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             )}
 
             {/* Swipe indicator for mobile */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 md:hidden">
-              <div className="flex items-center gap-2 text-white/60 text-xs bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
-                </svg>
-                <span>Swipe</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
+            {isMobile && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+                <div className="flex items-center gap-2 text-white/60 text-xs bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+                  </svg>
+                  <span>Swipe</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           
           {/* Caption/description */}
