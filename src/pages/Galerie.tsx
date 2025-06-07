@@ -138,7 +138,7 @@ const Galerie = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {currentMediaItems.map((item, index) => (
           <div 
-            key={item.id} 
+            key={item.id}
             className="aspect-square rounded-xl overflow-hidden glass hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer"
             onClick={() => handleMediaClick(index)}
           >
