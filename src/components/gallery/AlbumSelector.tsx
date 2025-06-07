@@ -9,14 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { X as CloseIcon } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-
-export type Album = {
-  id: string;
-  title: string;
-  description?: string;
-  coverImage?: string;
-  count: number;
-};
+import { Album } from '@/hooks/useGallery';
 
 interface AlbumSelectorProps {
   isOpen: boolean;
@@ -58,9 +51,9 @@ const AlbumSelector: React.FC<AlbumSelectorProps> = ({
                 className="p-3 rounded-xl bg-white/70 dark:bg-gray-800/40 hover:bg-white/90 dark:hover:bg-gray-700/60 border border-gray-300/60 dark:border-gray-700 shadow-sm hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="aspect-video rounded-lg bg-gray-100/80 dark:bg-gray-700/70 overflow-hidden mb-2">
-                  {album.coverImage ? (
+                  {album.cover_image ? (
                     <img 
-                      src={album.coverImage} 
+                      src={album.cover_image} 
                       alt={album.title}
                       className="w-full h-full object-cover"
                     />
