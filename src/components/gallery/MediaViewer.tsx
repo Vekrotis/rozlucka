@@ -287,7 +287,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                   alt={currentItem.alt || "Image"}
                   className={`transition-transform duration-200 object-contain select-none ${
                     isFullscreen 
-                      ? 'max-h-screen max-w-screen' 
+                      ? 'w-full h-full object-contain' 
                       : isMobile 
                         ? 'max-h-full max-w-full' 
                         : 'max-h-[65vh] max-w-[70vw]'
