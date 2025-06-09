@@ -1,4 +1,3 @@
-
 /* Anti-inspect script with reduced aggressive behavior */
 (function() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -88,4 +87,10 @@
     // Check for devtools at intervals
     setInterval(checkDevTools, 1000);
   }
+  
+  // Block copy event
+  document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    return false;
+  });
 })();
