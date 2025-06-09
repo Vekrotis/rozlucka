@@ -1,66 +1,11 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
-import AlbumSelector, { Album } from '@/components/gallery/AlbumSelector';
+import AlbumSelector from '@/components/gallery/AlbumSelector';
 import MediaViewer, { MediaItem } from '@/components/gallery/MediaViewer';
 import { Button } from '@/components/ui/button';
 import { Play, Music } from 'lucide-react';
-
-// Sample data - in a real app, this would come from a database or API
-const SAMPLE_ALBUMS: Album[] = [
-  { id: '1', title: '1. třída', description: 'První kroky ve škole', count: 12, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '2', title: 'Výlety', description: 'Dobrodružství mimo školu', count: 8, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '3', title: 'Škola v přírodě', description: 'Týden plný zábavy', count: 0, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '4', title: '9. třída', description: 'Poslední rok', count: 10, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '5', title: 'Sport', description: 'Sportovní úspěchy', count: 6, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '6', title: 'Besídky', description: 'Školní představení', count: 9, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '7', title: 'Výtvarná výchova', description: 'Naše umělecká díla', count: 1, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '8', title: 'Projekty', description: 'Školní projekty', count: 5, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '9', title: 'Výlety do přírody', description: 'Zážitky z přírody', count: 2, coverImage: '/20250328_085338000_iOS.jpg' },
-  { id: '10', title: 'Písničky', description: 'Naše oblíbené melodie', count: 3, coverImage: '/20250328_085338000_iOS.jpg' },
-];
-
-// Sample media items - in a real app, these would be filtered by album
-const SAMPLE_MEDIA: { [key: string]: MediaItem[] } = {
-  '1': [
-    { id: '101', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'První školní den', description: 'První školní den - září 2016' },
-    { id: '102', type: 'video', src: '/05-06-2022_121051.mp4', alt: 'Naše třída', description: 'Naše první třída' },
-    { id: '103', type: 'video', src: '/vid/05-06-2022_121051.mp4', description: 'Video z první besídky' },
-  ],
-  '4': [
-    { id: '401', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: '9. třída', description: 'Poslední školní rok - 2025' },
-    { id: '402', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Kamarádi', description: 'Přátelé na celý život' },
-  ],
-  '2': [
-    { id: '201', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Výlet do ZOO', description: 'Výlet do ZOO - 2018' },
-    { id: '202', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Výlet do muzea' },
-  ],
-  '5': [
-    { id: '501', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Fotbalový zápas', description: 'Meziškolní turnaj - 2022' },
-    { id: '502', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Atletické závody' },
-  ],
-  '6': [
-    { id: '601', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Vánoční besídka', description: 'Vánoční besídka - 2023' },
-    { id: '602', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Vystoupení 3. třída' },
-  ],
-  '7': [
-    { id: '701', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Výtvarná práce', description: 'Projekt Příroda - 2021' },
-    { id: '702', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Výstava prací', description: 'Školní výstava' },
-  ],
-  '8': [
-    { id: '801', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Ekologický projekt', description: 'Den Země - 2023' },
-    { id: '802', type: 'video', src: '/05-06-2022_121051.mp4', description: 'Prezentace projektů' },
-  ],
-  '9': [
-    { id: '901', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Turistika', description: 'Výlet na hrad - 2022' },
-    { id: '902', type: 'image', src: '/20250328_085338000_iOS.jpg', alt: 'Příroda', description: 'Výlet do CHKO' },
-  ],
-  '10': [
-    { id: '1001', type: 'audio', src: 'aud/Ondrovo Hodinky.mp3', description: 'Školní hymna' },
-    { id: '1002', type: 'audio', src: '/05-06-2022_121051.mp4', description: 'Sborový zpěv 6. třída' },
-    { id: '1003', type: 'audio', src: '/05-06-2022_121051.mp4', description: 'Absolventská píseň' },
-  ],
-};
+import { useGallery } from '@/hooks/useGallery';
 
 const Galerie = () => {
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
@@ -68,6 +13,10 @@ const Galerie = () => {
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
   const [isMediaViewerOpen, setIsMediaViewerOpen] = useState<boolean>(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0);
+  const [currentMediaItems, setCurrentMediaItems] = useState<MediaItem[]>([]);
+  const [loadingMedia, setLoadingMedia] = useState<boolean>(false);
+  
+  const { albums, loading, error, fetchMediaItems } = useGallery();
   
   useEffect(() => {
     // Use requestAnimationFrame for smoother animation
@@ -78,10 +27,21 @@ const Galerie = () => {
     return () => cancelAnimationFrame(timeout);
   }, []);
 
-  const handleAlbumSelect = useCallback((albumId: string) => {
+  const handleAlbumSelect = useCallback(async (albumId: string) => {
     setSelectedAlbum(albumId);
     setIsAlbumSelectorOpen(false);
-  }, []);
+    setLoadingMedia(true);
+    
+    try {
+      const mediaItems = await fetchMediaItems(albumId);
+      setCurrentMediaItems(mediaItems);
+    } catch (err) {
+      console.error('Failed to load media items:', err);
+      setCurrentMediaItems([]);
+    } finally {
+      setLoadingMedia(false);
+    }
+  }, [fetchMediaItems]);
 
   const handleMediaClick = useCallback((index: number) => {
     setCurrentMediaIndex(index);
@@ -100,17 +60,29 @@ const Galerie = () => {
     setIsAlbumSelectorOpen(true);
   }, []);
 
-  // Memoize computed values for performance
-  const currentMediaItems = useMemo(() => {
-    return selectedAlbum ? SAMPLE_MEDIA[selectedAlbum] || [] : [];
-  }, [selectedAlbum]);
-
   const selectedAlbumData = useMemo(() => {
-    return SAMPLE_ALBUMS.find(a => a.id === selectedAlbum);
-  }, [selectedAlbum]);
+    return albums.find(a => a.id === selectedAlbum);
+  }, [albums, selectedAlbum]);
 
   // Memoized media grid component for better performance
   const MediaGrid = useMemo(() => {
+    if (loading) {
+      return (
+        <div className="text-center py-12">
+          <div className="w-10 h-10 mx-auto border-4 border-t-purple border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin mb-4"></div>
+          <p className="text-lg text-gray-500 dark:text-gray-400 select-none">Načítám alba...</p>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="text-center py-12">
+          <p className="text-lg text-red-500 select-none">Chyba při načítání: {error}</p>
+        </div>
+      );
+    }
+
     if (!selectedAlbum) {
       return (
         <div className="text-center py-12">
@@ -122,6 +94,15 @@ const Galerie = () => {
           >
             Vybrat album
           </Button>
+        </div>
+      );
+    }
+
+    if (loadingMedia) {
+      return (
+        <div className="text-center py-12">
+          <div className="w-10 h-10 mx-auto border-4 border-t-purple border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin mb-4"></div>
+          <p className="text-lg text-gray-500 dark:text-gray-400 select-none">Načítám obsah alba...</p>
         </div>
       );
     }
@@ -187,7 +168,7 @@ const Galerie = () => {
         ))}
       </div>
     );
-  }, [selectedAlbum, currentMediaItems, handleMediaClick, handleOpenAlbumSelector]);
+  }, [selectedAlbum, currentMediaItems, handleMediaClick, handleOpenAlbumSelector, loading, error, loadingMedia]);
 
   return (
     <AppLayout>
@@ -230,7 +211,7 @@ const Galerie = () => {
         isOpen={isAlbumSelectorOpen}
         onClose={handleCloseAlbumSelector}
         onSelect={handleAlbumSelect}
-        albums={SAMPLE_ALBUMS}
+        albums={albums}
       />
       
       {/* Media viewer */}

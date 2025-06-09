@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Dialog,
@@ -251,7 +250,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             </button>
           )}
           
-          {/* Media container with touch events */}
+          {/* Media container with touch events - FIXED for mobile fullscreen */}
           <div 
             className="flex-grow flex items-center justify-center relative overflow-hidden"
             onTouchStart={onTouchStart}
@@ -271,7 +270,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
             
             {currentItem.type === 'image' ? (
               <div 
-                className="relative w-full h-full flex items-center justify-center p-4 md:p-8"
+                className={`relative w-full h-full flex items-center justify-center ${isFullscreen ? 'p-0' : 'p-4 md:p-8'}`}
                 style={{ 
                   cursor: zoomLevel > 1 && !isMobile ? 'move' : 'default',
                   touchAction: isMobile ? (isFullscreen ? 'pinch-zoom' : 'pan-x') : 'none'
@@ -287,7 +286,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({
                   alt={currentItem.alt || "Image"}
                   className={`transition-transform duration-200 object-contain select-none ${
                     isFullscreen 
-                      ? 'max-h-screen max-w-screen' 
+                      ? 'w-full h-full max-w-full max-h-full' 
                       : isMobile 
                         ? 'max-h-full max-w-full' 
                         : 'max-h-[65vh] max-w-[70vw]'
