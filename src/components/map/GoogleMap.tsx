@@ -32,7 +32,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({ className = "", height = "400px" 
         referrerPolicy="no-referrer-when-downgrade"
         title="Zámecký park 224, 363 01 Ostrov nad Ohří"
       />
-      <div style={{ marginTop: "8px", textAlign: "center", color: "#555" }}>
+      <div style={{ margin: "4.5px", textAlign: "center", color: "#555" }}>
         <span>Zámecký park 224, 363 01 Ostrov</span>
       </div>
     </div>
