@@ -23,7 +23,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({ className = "", height = "400px" 
     <div ref={mapRef} className={`w-full ${className}`}>
       <iframe
         ref={iframeRef}
-        src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyAj0_j83t1KGFYSDZPgOxyNSXkqnaCZGSQ&center=50.3057,12.9397&zoom=18&maptype=satellite`}
+        src={`https://www.google.com/maps/embed?pb=!4v1750200691358!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQy15ZTYwcHdF!2m2!1d50.30189722197134!2d12.94027713661501!3f178.49665572185455!4f10.833594866182864!5f0.4000000000000002&key=AIzaSyAj0_j83t1KGFYSDZPgOxyNSXkqnaCZGSQ`}
         width="600"
         height={height}
         style={{ border: 0, borderRadius: "12px" }}
@@ -31,7 +31,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({ className = "", height = "400px" 
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         title="Zámecký park 224, 363 01 Ostrov nad Ohří"
-      ></iframe>
+      />
     </div>
   );
 };
