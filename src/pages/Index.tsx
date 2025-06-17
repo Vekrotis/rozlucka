@@ -47,6 +47,9 @@ const Index = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 dark:text-white">
             Rozloučení se třídou <span className="gradient-text">9.B</span>
           </h1>
+          <p className="text-lg md:text-xl font-caveat text-gray-500 dark:text-gray-400 mt-2 mb-4">
+            2016–2025
+          </p>
         </div>
         
         <div className={`max-w-2xl my-8 opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`} style={{
