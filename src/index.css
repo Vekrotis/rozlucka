@@ -157,15 +157,22 @@
 
 @layer components {
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-yellow-500 font-bold;
+    background: linear-gradient(to right, #ec4899, #f43f5e, #eab308);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
   }
   
   .dark .gradient-text {
-    @apply from-pink-400 via-rose-400 to-yellow-400;
+    background: linear-gradient(to right, #f472b6, #fb7185, #facc15);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-r from-pink-500 via-rose-400 to-yellow-400;
+    @apply bg-gradient-to-r from-rose-400 via-red-300 to-yellow-400;
   }
   
   .gradient-bg-blue {
