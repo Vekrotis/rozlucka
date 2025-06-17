@@ -167,9 +167,7 @@
   .gradient-bg {
     @apply bg-gradient-to-r from-pink via-peach to-mandarin;
   }
-  .test {
-    @apply bg-gradient-to-r from-lightpurple via-fuchsia-400 to-fuchsia-600;
-  }
+
   
   .gradient-bg-blue {
     @apply bg-gradient-to-r from-lightblue via-turquoise to-mint;
