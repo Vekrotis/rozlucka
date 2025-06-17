@@ -22,7 +22,7 @@ function useGenderGradient(): string {
   const [searchParams] = useSearchParams();
   const gender = (searchParams.get('typ') || '').toLowerCase();
   if (gender === 'muz' || gender === 'muž') return 'from-blue-600 via-blue-500 to-cyan-500';
-  if (gender === 'zena' || gender === 'žena') return 'from-pink-600 via-rose-500 to-pink-400';
+  if (gender === 'zena' || gender === 'žena') return 'from-rose-600 via-pink-500 to-rose-400';
   return 'from-amber-500 via-yellow-500 to-orange-400';
 }
 
