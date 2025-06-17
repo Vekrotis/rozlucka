@@ -31,10 +31,10 @@ const Info = () => {
                 </div>
                 <h2 className="text-xl font-semibold select-none dark:text-white">Místo konání</h2>
               </div>
-              <p className="mb-2 select-none dark:text-white"><strong>Kulturní Dům....</strong></p>
-              <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">Ulice Obecná 12345</p>
+              <p className="mb-2 select-none dark:text-white"><strong>Oranžerie v Městské knihovně Ostrov</strong></p>
+              <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">Zámecký park 224</p>
               <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">363 01 Ostrov</p>
-              <p className="text-gray-600 dark:text-gray-300 select-none">Akce se koná v nějké aule</p>
+              <p className="text-gray-600 dark:text-gray-300 select-none">Oranžerie v 2. patře budovy</p>
             </div>
             
             <div className="glass p-6 rounded-2xl">
@@ -46,9 +46,9 @@ const Info = () => {
                 </div>
                 <h2 className="text-xl font-semibold select-none dark:text-white">Datum a čas</h2>
               </div>
-              <p className="mb-2 select-none dark:text-white"><strong>Pátek, 12. Březena 2044</strong></p>
-              <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">Začátek: 17:00</p>
-              <p className="text-gray-600 dark:text-gray-300 select-none">Předpokládaný konec: 19:00</p>
+              <p className="mb-2 select-none dark:text-white"><strong>Čtvrtek, 26. Června 2025</strong></p>
+              <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">Začátek: 17:30</p>
+              <p className="text-gray-600 dark:text-gray-300 select-none">Předpokládaný konec: 18:15</p>
             </div>
           </div>
           
@@ -95,7 +95,7 @@ const Info = () => {
                     Jak formálně se mám obléct?
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-4 select-none dark:text-gray-300">
-                    Doporučujeme společenské oblečení odpovídající slavnostní příležitosti. Žáci 9.B budou oblečeni formálně :DD.
+                    Doporučujeme společenské oblečení odpovídající slavnostní příležitosti. Žáci 9.B budou oblečeni formálně.
                   </AccordionContent>
                 </AccordionItem>
                 
@@ -121,15 +121,12 @@ const Info = () => {
               <div className="flex-1">
                 <h3 className="font-semibold mb-2 select-none dark:text-white">Třídní učitelka</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">Mgr. Jaroslava Piherová</p>
-                <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">E-mail:</p>
-                <p className="text-gray-600 dark:text-gray-300 select-none">Tel.:</p>
+                <p className="text-gray-600 dark:text-gray-300 select-none">Tel.: 725 562 217</p>
               </div>
               
               <div className="flex-1">
-                <h3 className="font-semibold mb-2 select-none dark:text-white">Zástupce třídy</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">David Vreštiak, protože je na něj největší spoleh xDD</p>
-                <p className="text-gray-600 dark:text-gray-300 mb-1 select-none">E-mail:</p>
-                <p className="text-gray-600 dark:text-gray-300 select-none">Tel.:</p>
+                <h3 className="font-semibold mb-2 select-none dark:text-white">Zástupci třídy</h3>
+                <p className="text-gray-600 dark:text-gray-300 select-none">E-mail: rozluckasdevitkou@gmail.com</p>
               </div>
             </div>
           </div>

@@ -21,16 +21,16 @@ const GoogleMap: React.FC<GoogleMapProps> = ({ className = "", height = "400px" 
 
   return (
     <div ref={mapRef} className={`w-full ${className}`}>
-      <iframe 
+      <iframe
         ref={iframeRef}
-        src="https://www.google.com/maps/embed?pb=!4v1717673115122!6m8!1m7!1sJSkLRu9ITSFZe_hOtVr70Q!2m2!1d50.3093061293358!2d12.9483689239505!3f276.56!4f0!5f0.7820865974627469"
+        src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyAj0_j83t1KGFYSDZPgOxyNSXkqnaCZGSQ&center=50.3057,12.9397&zoom=18&maptype=satellite`}
         width="600"
         height={height}
         style={{ border: 0, borderRadius: "12px" }}
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        title="Mapa města Ostrov nad Ohří"
+        title="Zámecký park 224, 363 01 Ostrov nad Ohří"
       ></iframe>
     </div>
   );

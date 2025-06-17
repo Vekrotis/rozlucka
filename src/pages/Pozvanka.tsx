@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import AppLayout from '@/components/layout/AppLayout';
@@ -22,9 +21,9 @@ function useCapitalizedSearchParam(param: string, fallback: string): string {
 function useGenderGradient(): string {
   const [searchParams] = useSearchParams();
   const gender = (searchParams.get('typ') || '').toLowerCase();
-  if (gender === 'muz' || gender === 'muž') return 'from-blue-500 via-blue-400 to-lightblue';
-  if (gender === 'zena' || gender === 'žena') return 'from-lightpurple to-lightpink';
-  return 'from-yellow-400 via-yellow-300 to-yellow-200';
+  if (gender === 'muz' || gender === 'muž') return 'from-blue-600 via-blue-500 to-cyan-500';
+  if (gender === 'zena' || gender === 'žena') return 'from-rose-600 via-pink-500 to-rose-400';
+  return 'from-amber-500 via-yellow-500 to-orange-400';
 }
 
 const Pozvanka = () => {
@@ -96,8 +95,8 @@ const Pozvanka = () => {
             {jmeno}
           </p>
           <p className="text-lg mb-8 dark:text-gray-200">
-            Dovolujeme si Vás pozvat na slavnostní rozloučení třídy 9.B se základní školou, 
-            které se uskuteční dne <strong>12. Března 2044</strong> v prostorách školy.
+            Dovolujeme si Vás pozvat na slavnostní rozloučení třídy 9.B se základní školou, které se uskuteční dne <strong>26. Června 2025</strong> v Oranžerii Městské knihovny Ostrov od 17:30.
+
           </p>
           {/* Info icons for PDF export */}
           <div className="flex justify-center gap-8 my-6">
@@ -108,7 +107,7 @@ const Pozvanka = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
               </div>
-              <p className="text-sm font-medium dark:text-gray-300">Kulturní Dům, Ostrov</p>
+              <p className="text-sm font-medium dark:text-gray-300">Oranžerie Městské knihovny Ostrov</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple to-lightblue flex items-center justify-center text-white mb-2">
@@ -116,7 +115,7 @@ const Pozvanka = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-              <p className="text-sm font-medium dark:text-gray-300">12. Března 2044, 17:00</p>
+              <p className="text-sm font-medium dark:text-gray-300">26. Června 2025, 17:30</p>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 pdf-hide">

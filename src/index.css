@@ -72,6 +72,23 @@
   
   * {
     @apply border-border;
+        /* Disable text selection globally */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* Disable text highlighting */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Re-enable text selection for input fields */
+  input, textarea, [contenteditable] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
   }
   
   /* Custom scrollbar - compatible with all browsers */
@@ -140,7 +157,7 @@
 
 @layer components {
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple via-black to-peach font-bold;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple/80 via-fuchsia-400/40 to-yellow-800/70 font-bold;
   }
   
   .dark .gradient-text {
@@ -149,6 +166,9 @@
   
   .gradient-bg {
     @apply bg-gradient-to-r from-pink via-peach to-mandarin;
+  }
+  .test {
+    @apply bg-gradient-to-r from-lightpurple via-fuchsia-400 to-fuchsia-600;
   }
   
   .gradient-bg-blue {
