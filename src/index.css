@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -156,7 +157,7 @@
 
 @layer components {
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-500 to-yellow-500 font-bold;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-yellow-500 font-bold;
   }
   
   .dark .gradient-text {

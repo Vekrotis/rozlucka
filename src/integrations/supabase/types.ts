@@ -9,7 +9,98 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      albums: {
+        Row: {
+          cover_image: string | null
+          created_at: string
+          description: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cover_image?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cover_image?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      media_items: {
+        Row: {
+          album_id: string | null
+          alt_text: string | null
+          created_at: string
+          description: string | null
+          duration: number | null
+          file_name: string
+          file_path: string
+          file_size: number | null
+          id: string
+          metadata: Json | null
+          mime_type: string | null
+          sort_order: number | null
+          thumbnail_path: string | null
+          title: string | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          album_id?: string | null
+          alt_text?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          file_name: string
+          file_path: string
+          file_size?: number | null
+          id?: string
+          metadata?: Json | null
+          mime_type?: string | null
+          sort_order?: number | null
+          thumbnail_path?: string | null
+          title?: string | null
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          album_id?: string | null
+          alt_text?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          file_name?: string
+          file_path?: string
+          file_size?: number | null
+          id?: string
+          metadata?: Json | null
+          mime_type?: string | null
+          sort_order?: number | null
+          thumbnail_path?: string | null
+          title?: string | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_items_album_id_fkey"
+            columns: ["album_id"]
+            isOneToOne: false
+            referencedRelation: "albums"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
