@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
@@ -72,6 +71,23 @@
   
   * {
     @apply border-border;
+    /* Disable text selection globally */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* Disable text highlighting */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Re-enable text selection for input fields */
+  input, textarea, [contenteditable] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
   }
   
   /* Custom scrollbar - compatible with all browsers */
@@ -140,19 +156,19 @@
 
 @layer components {
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple via-black to-peach font-bold;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-500 to-yellow-500 font-bold;
   }
   
   .dark .gradient-text {
-    @apply from-purple/90 via-pink/90 to-peach/90;
+    @apply from-pink-400 via-rose-400 to-yellow-400;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-r from-pink via-peach to-mandarin;
+    @apply bg-gradient-to-r from-pink-500 via-rose-400 to-yellow-400;
   }
   
   .gradient-bg-blue {
-    @apply bg-gradient-to-r from-lightblue via-turquoise to-mint;
+    @apply bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400;
   }
   
   .blob-effect {
@@ -161,7 +177,7 @@
     height: 80vmax;
     top: -40vmax;
     left: -20vmax;
-    background: radial-gradient(circle at center, rgba(217, 184, 255, 0.4), rgba(255, 214, 222, 0.2), rgba(184, 225, 255, 0.1));
+    background: radial-gradient(circle at center, rgba(236, 72, 153, 0.3), rgba(251, 113, 133, 0.2), rgba(253, 224, 71, 0.1));
     border-radius: 50%;
     pointer-events: none;
     z-index: -1;
@@ -169,7 +185,7 @@
   }
   
   .dark .blob-effect {
-    background: radial-gradient(circle at center, rgba(217, 184, 255, 0.15), rgba(255, 214, 222, 0.1), rgba(184, 225, 255, 0.05));
+    background: radial-gradient(circle at center, rgba(236, 72, 153, 0.15), rgba(251, 113, 133, 0.1), rgba(253, 224, 71, 0.05));
   }
   
   .card-hover {
