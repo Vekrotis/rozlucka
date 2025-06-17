@@ -9,13 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { X as CloseIcon } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-
-interface Album {
-  id: string;
-  title: string;
-  cover_image?: string;
-  count: number;
-}
+import { Album } from '@/hooks/useGallery';
 
 interface AlbumSelectorProps {
   isOpen: boolean;

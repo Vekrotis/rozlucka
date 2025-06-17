@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import AppLayout from '@/components/layout/AppLayout';
@@ -21,9 +22,9 @@ function useCapitalizedSearchParam(param: string, fallback: string): string {
 function useGenderGradient(): string {
   const [searchParams] = useSearchParams();
   const gender = (searchParams.get('typ') || '').toLowerCase();
-  if (gender === 'muz' || gender === 'muž') return 'from-blue-500 via-blue-400 to-cyan-400';
-  if (gender === 'zena' || gender === 'žena') return 'from-pink-500 via-rose-400 to-pink-400';
-  return 'from-yellow-400 via-yellow-300 to-orange-300';
+  if (gender === 'muz' || gender === 'muž') return 'from-blue-500 via-blue-400 to-lightblue';
+  if (gender === 'zena' || gender === 'žena') return 'from-lightpurple to-lightpink';
+  return 'from-yellow-400 via-yellow-300 to-yellow-200';
 }
 
 const Pozvanka = () => {

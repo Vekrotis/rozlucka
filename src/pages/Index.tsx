@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import GradientButton from '@/components/ui/GradientButton';
@@ -6,7 +5,9 @@ import { useToast } from '@/hooks/use-toast';
 import ConfettiEffect from '@/components/effects/ConfettiEffect';
 
 const Index = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
   const [quote] = useState<string>('„Není důležité, kolik jsme toho stihli probrat, ale kolik jsme si z toho odnesli. Není důležité, kolikrát jsme zaspali, ale že jsme vždycky nějak přišli. Není důležité, kolik bylo testů, ale kolik z nich jsme přežili."');
@@ -46,9 +47,6 @@ const Index = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 dark:text-white">
             Rozloučení se třídou <span className="gradient-text">9.B</span>
           </h1>
-          <p className="text-xl md:text-2xl font-caveat text-gray-600 dark:text-gray-400 mb-4">
-            9.B od roku 2016–2025
-          </p>
         </div>
         
         <div className={`max-w-2xl my-8 opacity-0 ${showAnimation ? 'animate-fade-in' : ''}`} style={{
