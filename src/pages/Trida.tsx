@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
+import { image } from 'html2canvas/dist/types/css/types/image';
 
 const teacherProfiles = [
   // 1. Třídní učitelé (current and previous)
@@ -59,8 +60,8 @@ const teacherProfiles = [
 const studentProfiles = [
   { id: 1, name: 'Matouš Appeltauer', image: 'zaci/matous.jpg' },
   { id: 2, name: 'Jakub Bečka', image: 'zaci/kuba.jpg' },
-  { id: 3, name: 'Yassine Ben Salem' },
-  { id: 4, name: 'Lukas Benda' },
+  { id: 3, name: 'Yassine Ben Salem', image: 'zaci/yassin.jpg' },
+  { id: 4, name: 'Lukas Benda', image: 'zaci/lukas.png' },
   { id: 5, name: 'Ondřej Beran' },
   { id: 6, name: 'Aleš Břečka' },
   { id: 7, name: 'Jan Čepelák' },
@@ -75,12 +76,12 @@ const studentProfiles = [
   { id: 16, name: 'Daniel Novotný', image: 'zaci/danek.jpg' },
   { id: 17, name: 'Laura Patočková' },
   { id: 18, name: 'Matěj Rezák' },
-  { id: 19, name: 'David Šíma' },
+  { id: 19, name: 'David Šíma', image: 'zaci/sima.jpg',  },
   { id: 20, name: 'Tereza Šnajdrová' },
   { id: 21, name: 'Pavel Šneberger' },
   { id: 22, name: 'Klára Štefková' },
   { id: 23, name: 'Anna Vokatá' },
-  { id: 24, name: 'David Vreštiak' },
+  { id: 24, name: 'David Vreštiak', image: 'zaci/davidv.png' },
 ];
 
 interface Profile {
