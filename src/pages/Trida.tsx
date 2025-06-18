@@ -5,45 +5,55 @@ import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 
 const teacherProfiles = [
-  { id: 0, name: 'Mgr. Martin Fous', subject: 'Ředitel, učitel Matematiky a INF' },
+  // 1. Třídní učitelé (current and previous)
   { id: 1, name: 'Mgr. Jaroslava Piherová', subject: 'Třídní učitelka a učitelka Angličtiny' },
   { id: 2, name: 'Mgr. Kateřina Macurová', subject: 'Předchozí třídní učitelka', image: '' },
   { id: 3, name: 'Mgr. Hana Kůsová', subject: 'Třídní učitelka 1. stupně' },
-  { id: 4, name: 'Viktorie Bendová', subject: 'Asistentka' },
-  { id: 5, name: 'Kateřina Jandová', subject: 'Předchozí asistentka' },
-  { id: 6, name: 'Mgr. Lenka Buchtová', subject: 'Učitelka Českého jazyka' },
-  { id: 7, name: 'Mgr. Michaela Frýdlová', subject: 'Učitelka Angličtiny a Němčiny' },
-  { id: 8, name: 'Mgr. Pavel Vítek', subject: 'Učitel Angličtiny' },
-  { id: 9, name: 'Mgr. Hana Veselá', subject: 'Učitelka Zeměpisu a Němčiny' },
-  { id: 11, name: 'Mgr. Martin Choutka', subject: 'Učitel Fyziky' },
-  { id: 12, name: 'Mgr. Zdeněk Kunc', subject: 'Učitel Chemie' },
-  { id: 13, name: 'Mgr. Jiří Kollarov', subject: 'Učitel Přírodopisu' },
-  { id: 14, name: 'Mgr. Jiří Hájek', subject: 'Učitel Dějepisu' },
-  { id: 15, name: 'Mgr. Nikol Matoušková', subject: 'Učitelka Přírodopisu' },
-  { id: 16, name: 'a tak dále', subject: 'xd' },
-  { id: 17, name: 'Mgr. Michal Sütto', subject: 'Učitel Tělesné výchovy' },
-  { id: 18, name: 'Mgr. Jiří Kollarov', subject: 'Učitelka Hudební výchovy' },
-  { id: 19, name: 'Mgr. Jaroslava Piherová', subject: 'Učitel Výtvarné výchovy' },
-  { id: 20, name: 'Mgr.Martin Fous', subject: 'Učitel Informatiky' },
-  { id: 21, name: 'Mgr. Ivana Koutná', subject: 'Učitel Občanské výchovy' },
-  { id: 22, name: 'Mgr. Ivana Bortlíková', subject: 'Učitelka Prvouky' },
-  { id: 23, name: 'Mgr. Anna Veselá', subject: 'Učitka Pracovních činností' },
-  { id: 24, name: 'Mgr. Roman Chocholáček', subject: 'Učitel Informatiky a Programování' },
-  { id: 25, name: 'Arpád Kökeny', subject: 'Učitel informatiky' },
-  { id: 26, name: 'Mgr. Martin Matoušek', subject: 'Učitel Tělesné výchovy' },
+
+  // 2. Ředitel a zástupci
+  { id: 4, name: 'Mgr. Martin Fous', subject: 'Ředitel, učitel Matematiky a INF' },
+  { id: 5, name: 'Mgr. Václav Hruška', subject: 'Zástupce ředitele' },
+  { id: 6, name: 'Mgr. Věra Kučerová', subject: 'Zástupkyně ředitele a učitelka Ruštiny' },
+
+  // 3. Asistenti
+  { id: 7, name: 'Viktorie Bendová', subject: 'Asistentka' },
+  { id: 8, name: 'Kateřina Jandová', subject: 'Předchozí asistentka' },
+
+  // 4. Učitelé hlavních předmětů
+  { id: 9, name: 'Mgr. Lenka Buchtová', subject: 'Učitelka Českého jazyka' },
+  { id: 10, name: 'Mgr. Nikola Matoušková', subject: 'Učitelka Matematiky a Přírodopisu' },
+  { id: 11, name: 'Mgr. Roman Chocholáček', subject: 'Učitel Informatiky' },
+  { id: 12, name: 'Mgr. Ester Štefková', subject: 'Učitelka Informatiky' },
+  { id: 13, name: 'Arpád Kökeny', subject: 'Učitel informatiky' },
+  { id: 14, name: 'Mgr. Zdeněk Kunc', subject: 'Učitel Chemie' },
+  { id: 15, name: 'Mgr. Martin Choutka', subject: 'Učitel Fyziky' },
+  { id: 16, name: 'Mgr. Jiří Kollarov', subject: 'Učitel Přírodopisu a HV' },
+  { id: 17, name: 'Mgr. Danuše Levá', subject: 'Učitelka Přírodovědy' },
+  { id: 18, name: 'Mgr. Lenka Machalová', subject: 'Učitelka Vlastivědy' },
+  { id: 19, name: 'Mgr. Jiří Hájek', subject: 'Učitel Dějepisu' },
+  { id: 20, name: 'Mgr. Anna Veselá', subject: '' },
+
+  // 5. Učitelé jazyků
+  { id: 21, name: 'Mgr. Michaela Frýdlová', subject: 'Učitelka Angličtiny a Němčiny' },
+  { id: 22, name: 'Mgr. Pavel Vítek', subject: 'Učitel Angličtiny' },
+
+  // 6. Učitelé tělesné výchovy
+  { id: 23, name: 'Mgr. Tomáš Kulhavý', subject: 'Učitel Tělesné výchovy' },
+  { id: 24, name: 'Mgr. Jiří Mrnka', subject: 'Učitel Tělesné výchovy' },
+  { id: 25, name: 'Mgr. Martin Matoušek', subject: 'Učitel Tělesné výchovy' },
+  { id: 26, name: 'Mgr. Michal Sütto', subject: 'Učitel Tělesné výchovy' },
+
+  // 7. Ostatní učitelé
   { id: 27, name: 'Mgr. Dana Klauková', subject: 'Učitelka Hudební výchovy' },
-  { id: 28, name: 'Mgr. Milena Topinková', subject: 'Učitel Výtvarné výchovy' },
-  { id: 29, name: 'Mgr. Dana Levá', subject: 'Učitela Přírodovědy ' },
-  { id: 30, name: 'Mgr. Václav Hruška', subject: 'Učitel Anglického jazyka' },
-  { id: 31, name: 'Mgr.Lenka Machalová ', subject: 'Učitelka Vlastivěda' },
-  { id: 32, name: 'Mgr. Tomáš Kulhavý', subject: 'Učitel Tělesné výchovy' },
-  { id: 33, name: 'Mgr. Jiří Mrnka', subject: 'Učitel Tělesné výchovy' },
-  { id: 34, name: 'Mgr. Kateřina Rücková', subject: 'Učitelka seminářů' },
-  { id: 35, name: 'Mgr. Pavel Vítek', subject: 'Učitel Angličtiny' },
-  { id: 36, name: 'Mgr. Věra Kučerová ', subject: 'Učitelka Ruštiny' },
-  { id: 37, name: 'Mgr. Linda Takieddinová', subject: 'Učitelka Tělesné výchovy' },
-  { id: 38, name: 'Mgr. Lada Bláhová', subject: 'Učitelka Tělesné výchovy' },
-  
+  { id: 28, name: 'Mgr. Ivana Koutná', subject: 'Učitelka Občanské výchovy' },
+  { id: 29, name: 'Mgr. Kateřina Rücková', subject: '' },
+  { id: 30, name: 'Mgr. Milena Topinková', subject: 'Učitelka Výtvarné výchovy' },
+  { id: 31, name: 'Mgr. Linda Takieddinová', subject: '' },
+  { id: 32, name: 'Mgr. Hana Veselá', subject: 'Učitelka Zeměpisu a Němčiny' },
+  { id: 33, name: 'Mgr. Ivana Malcátová', subject: '' },
+  { id: 34, name: 'Mgr. Radek Pícha', subject: 'Výchovný poradce a učitel' },
+  { id: 35, name: 'Mgr. Lada Bláhová', subject: '' },
+  { id: 36, name: 'Mgr. Ivana Bortlíková', subject: 'Učitelka Prvouky' },
 ];
 
 const studentProfiles = [
