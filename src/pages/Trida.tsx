@@ -78,9 +78,9 @@ const studentProfiles = [
   { id: 18, name: 'Matěj Rezák' },
   { id: 19, name: 'David Šíma', image: 'zaci/sima.jpg',  },
   { id: 20, name: 'Tereza Šnajdrová' },
-  { id: 21, name: 'Pavel Šneberger' },
+  { id: 21, name: 'Pavel Šneberger', image: 'zaci/paja.jpg' },
   { id: 22, name: 'Klára Štefková' },
-  { id: 23, name: 'Anna Vokatá' },
+  { id: 23, name: 'Anna Vokatá', image: 'zaci/anna.png' },
   { id: 24, name: 'David Vreštiak', image: 'zaci/davidv.png' },
 ];
 
