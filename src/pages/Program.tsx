@@ -29,17 +29,12 @@ const programItems = [
     time: '',
     title: 'Poslední vysvědčení třídy 9.B',
     description: 'Předání posledních vysvědčení na základní škole.',
+    highlight: true,
   },
    {
     time: '',
     title: 'Vzpomínková část',
     description: 'Video prezentace a fotografie z let strávených na základní škole.',
-  },
-  {
-    time: '',
-    title: 'Předání vysvědčení',
-    description: 'Předání posledních vysvědčení na základní škole.',
-    highlight: true,
   },
   {
     time: '18:15',
