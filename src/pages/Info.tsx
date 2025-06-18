@@ -126,7 +126,7 @@ const Info = () => {
               
               <div className="flex-1">
                 <h3 className="font-semibold mb-2 select-none dark:text-white">Zástupci třídy</h3>
-                <p className="text-gray-600 dark:text-gray-300 select-none">E-mail: rozluckasdevitkou@gmail.com</p>
+                <p className="text-gray-600 dark:text-gray-300 select-none">E-mail: info@rozlucka-s-beeeckem.cz</p>
               </div>
             </div>
           </div>
