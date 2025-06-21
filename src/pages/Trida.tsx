@@ -22,7 +22,7 @@ const teacherProfiles = [
 
   // 4. Učitelé hlavních předmětů
   { id: 9, name: 'Mgr. Lenka Buchtová', subject: 'Učitelka Českého jazyka' },
-  { id: 10, name: 'Mgr. Nikola Matoušková', subject: 'Učitelka Matematiky a Přírodopisu' },
+  { id: 10, name: 'Ing. Nikola Matoušková', subject: 'Učitelka Matematiky a Přírodopisu' },
   { id: 11, name: 'Mgr. Roman Chocholáček', subject: 'Učitel Informatiky' },
   { id: 12, name: 'Mgr. Ester Štefková', subject: 'Učitelka Informatiky' },
   { id: 13, name: 'Arpád Kökeny', subject: 'Učitel informatiky' },

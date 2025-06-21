@@ -7,7 +7,7 @@ const bestMemories = [
   {
     text: 'Nikdy nezapomenu na školní výlet do Parlamentu, kdy jsme nestihli bus do Plzně a nakonec si užili den ve Varech.',
     name: 'Natalie Kheilová',
-    image: 'zaci/Untitled6.png',
+    image: 'zaci/naty.jpg',
   },
   {
     text: 'Nejlepší byla naše vánoční besídka, kde jsme zpívali koledy a Šímu odvedli kvůli mně.',
@@ -34,14 +34,14 @@ const bestMemories = [
 const teacherMessages = [
   {
     text: 'Bylo mi ctí učit vás. Přeji vám mnoho úspěchů do budoucna a věřím, že využijete všechny získané vědomosti a zkušenosti.',
-    name: 'Mgr. Nikola Matouškoová',
+    name: 'Ing. Nikola Matouškoová',
     desc: 'Učitelka matematiky v 6. - 8. třídě',
-    image: 'ucitele/Untitled11.png',
+    image: '',
   },
   {
     text: 'Vaše třída byla vždy plná energie a nápadů. Děkuji za krásné roky.',
     name: 'Mgr. Martin Fous',
-    desc: 'Učitel matematiky',
+    desc: 'Ředitel a učitel matematiky',
   },
   {
     text: 'Přeji vám, ať si uchováte radost z objevování a nikdy se nebojíte ptát.',
