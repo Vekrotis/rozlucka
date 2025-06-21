@@ -67,7 +67,7 @@ const studentProfiles = [
   { id: 7, name: 'Jan Čepelák' },
   { id: 8, name: 'Adriana Demeterová' },
   { id: 9, name: 'Hana Dvořáková', image: 'zaci/hanka.jpg' },
-  { id: 10, name: 'Ema Horčičková', image: 'zaci/emi.PNG' },
+  { id: 10, name: 'Ema Horčičková', image: 'zaci/emi2.jpeg' },
   { id: 11, name: 'Sofia Javůrková' },
   { id: 12, name: 'Natalie Kheilová', image: 'zaci/naty.jpg' },
   { id: 13, name: 'Zuzana Kocifajová' },
