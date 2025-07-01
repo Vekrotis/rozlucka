@@ -33,7 +33,7 @@ const Galerie = () => {
             </h2>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6">
-              Bude přístupné od <strong>30. 6. 2025</strong>
+              Bude přístupné za: <strong>hodně dlouho</strong> (Technik má dovolenou 🏝️)
             </p>
             
             <p className="text-gray-600 dark:text-gray-400">
