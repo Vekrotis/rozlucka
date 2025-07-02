@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
+import GradientButton from '@/components/ui/GradientButton';
 
 const Galerie = () => {
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
@@ -28,16 +29,16 @@ const Galerie = () => {
               </svg>
             </div>
             
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 dark:text-white">
-              Galerie bude brzy k dispozici
-            </h2>
-            
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6">
-              Bude přístupné za: <strong>hodně dlouho</strong> (Technik má dovolenou 🏝️)
-            </p>
-            
-            <p className="text-gray-600 dark:text-gray-400">
-              Připravujeme pro vás fotografie a vzpomínky z naší společné cesty základní školou.
+            <GradientButton
+              to="https://zsjvm-my.sharepoint.com/:f:/g/personal/buchtova_lenka_zsamsostrov_cz/Eq2aAFuM7tBDvii2g2CdBmEBXplzLPAxdLY13aRx75bK5g?e=wkNjCu"
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto text-lg px4 py-1"
+            >
+              Otevřít galerii fotek
+            </GradientButton>
+            <p className="mt-4 text-gray-700 dark:text-gray-300 text-base select-none">
+              Fotky budou postupně přibývat.
             </p>
           </div>
         </div>
